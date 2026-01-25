@@ -21,10 +21,10 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
       "General Assistants": "generalAssistants",
       "Lesson Planning": "lessonPlanning",
       "Presentation Tools": "presentationTools",
-      "Student Assessment & Feedback": "studentAssessment",
+      "Student Assessment": "studentAssessment",
       "Study & Review": "studyReview",
       "Video Creation": "videoCreation",
-      "Visual Content Creation": "visualContent",
+      "Visual Content": "visualContent",
     };
     return t[map[category]] || category;
   };
@@ -79,17 +79,24 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </p>
           </div>
 
-          <button className="w-full bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-700 dark:to-slate-600 text-white px-4 py-3 rounded-lg text-sm font-semibold hover:from-slate-800 hover:to-slate-700 dark:hover:from-slate-600 dark:hover:to-slate-500 transition-all shadow-sm hover:shadow-md transform hover:scale-[1.02]">
+          <a
+            href="https://github.com/AhmedTElKodsh/teachers-tools-hub/issues/new?labels=tool-suggestion&template=suggest-tool.md&title=%5BTool+Suggestion%5D+"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-700 dark:to-slate-600 text-white px-4 py-3 rounded-lg text-sm font-semibold hover:from-slate-800 hover:to-slate-700 dark:hover:from-slate-600 dark:hover:to-slate-500 transition-all shadow-sm hover:shadow-md transform hover:scale-[1.02] text-center"
+          >
             {t.suggestTool}
-          </button>
+          </a>
 
           <p
             className={`text-[10px] text-center text-slate-400 dark:text-slate-500 px-2 leading-tight ${isRTL ? "font-cairo" : ""}`}
           >
             {t.foundIssue}{" "}
             <a
-              href="#"
-              className="underline hover:text-slate-600 dark:hover:text-slate-300"
+              href="https://github.com/AhmedTElKodsh/teachers-tools-hub/issues/new?labels=bug&template=bug-report.md&title=%5BBug%5D+"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
             >
               {t.reportHere}
             </a>

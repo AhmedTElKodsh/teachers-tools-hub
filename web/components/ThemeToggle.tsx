@@ -6,6 +6,8 @@ import { useTheme } from "../contexts/ThemeContext";
 const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
+  if (!theme) return null;
+
   return (
     <button
       onClick={toggleTheme}

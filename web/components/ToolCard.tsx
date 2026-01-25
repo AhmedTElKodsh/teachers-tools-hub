@@ -38,9 +38,8 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
         {/* Title and Category - Stacked Vertically */}
         <div className={`mb-4 ${isRTL ? "text-right" : ""}`}>
           <h3
-            className={`text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100 mb-2`}
+            className={`text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100 mb-2 ${isRTL ? "text-left" : ""}`}
             dir="ltr"
-            style={{ unicodeBidi: "plaintext" }}
           >
             {tool.name}
           </h3>

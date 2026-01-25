@@ -1,0 +1,9 @@
+[
+  { "id": "general-assistants", "name": "General Assistants", "name_ar": "مساعدين عامين" },
+  { "id": "lesson-planning", "name": "Lesson Planning", "name_ar": "تخطيط الدروس" },
+  { "id": "presentation-tools", "name": "Presentation Tools", "name_ar": "أدوات العروض التقديمية" },
+  { "id": "student-assessment", "name": "Student Assessment", "name_ar": "تقييم الطلاب" },
+  { "id": "study-review", "name": "Study & Review", "name_ar": "الدراسة والمراجعة" },
+  { "id": "video-creation", "name": "Video Creation", "name_ar": "إنشاء الفيديو" },
+  { "id": "visual-content", "name": "Visual Content", "name_ar": "المحتوى البصري" }
+]

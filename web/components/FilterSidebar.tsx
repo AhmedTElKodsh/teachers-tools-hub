@@ -1,7 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
+import SuggestToolModal from "./SuggestToolModal";
+import ReportIssueModal from "./ReportIssueModal";
 
 interface FilterSidebarProps {
   categories: string[];
@@ -15,6 +17,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
   onSelectCategory,
 }) => {
   const { t, isRTL } = useLanguage();
+  const [isSuggestModalOpen, setIsSuggestModalOpen] = useState(false);
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 
   const getCategoryTranslation = (category: string): string => {
     const map: Record<string, keyof typeof t> = {
@@ -30,7 +34,17 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
   };
 
   return (
-    <div className="w-full md:w-64 shrink-0">
+    <>
+      <SuggestToolModal
+        isOpen={isSuggestModalOpen}
+        onClose={() => setIsSuggestModalOpen(false)}
+      />
+      <ReportIssueModal
+        isOpen={isReportModalOpen}
+        onClose={() => setIsReportModalOpen(false)}
+      />
+      
+      <div className="w-full md:w-64 shrink-0">
       <div className="bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-4 md:p-6 md:sticky md:top-8 animate-fade-in">
         <h2
           className={`text-lg font-bold bg-gradient-to-r from-slate-900 to-slate-700 dark:from-slate-100 dark:to-slate-300 bg-clip-text text-transparent mb-4 md:mb-6 ${isRTL ? "font-cairo text-right" : ""}`}
@@ -79,32 +93,29 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             </p>
           </div>
 
-          <a
-            href="https://github.com/AhmedTElKodsh/teachers-tools-hub/issues/new?labels=tool-suggestion&template=suggest-tool.md&title=%5BTool+Suggestion%5D+"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-700 dark:to-slate-600 text-white px-4 py-3 rounded-lg text-sm font-semibold hover:from-slate-800 hover:to-slate-700 dark:hover:from-slate-600 dark:hover:to-slate-500 transition-all shadow-sm hover:shadow-md transform hover:scale-[1.02] text-center"
+          <button
+            onClick={() => setIsSuggestModalOpen(true)}
+            className="w-full bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-700 dark:to-slate-600 text-white px-4 py-3 rounded-lg text-sm font-semibold hover:from-slate-800 hover:to-slate-700 dark:hover:from-slate-600 dark:hover:to-slate-500 transition-all shadow-sm hover:shadow-md transform hover:scale-[1.02]"
           >
             {t.suggestTool}
-          </a>
+          </button>
 
           <p
             className={`text-[10px] text-center text-slate-400 dark:text-slate-500 px-2 leading-tight ${isRTL ? "font-cairo" : ""}`}
           >
             {t.foundIssue}{" "}
-            <a
-              href="https://github.com/AhmedTElKodsh/teachers-tools-hub/issues/new?labels=bug&template=bug-report.md&title=%5BBug%5D+"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => setIsReportModalOpen(true)}
               className="underline hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
             >
               {t.reportHere}
-            </a>
+            </button>
             .
           </p>
         </div>
       </div>
     </div>
+    </>
   );
 };
 

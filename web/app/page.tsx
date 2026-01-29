@@ -49,9 +49,9 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors">
       {/* Header */}
-      <header className="relative bg-gradient-to-br from-blue-50 via-purple-50/50 to-pink-50/30 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 border-b border-slate-200 dark:border-slate-700 py-8 md:py-12 px-4 md:px-6 overflow-hidden">
+      <header className="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 border-b border-slate-200 dark:border-slate-700 py-8 md:py-12 px-4 md:px-6 overflow-hidden">
         {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 dark:from-blue-500/10 dark:via-purple-500/10 dark:to-pink-500/10 animate-gradient"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/8 via-purple-500/8 to-pink-500/8 dark:from-blue-500/10 dark:via-purple-500/10 dark:to-pink-500/10 animate-gradient"></div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Top Bar with Toggles */}
@@ -60,7 +60,7 @@ export default function Home() {
           >
             <a
               href="/admin/dashboard"
-              className="p-2 rounded-lg bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 transition-colors shadow-sm dark:text-white group"
+              className="p-2 rounded-lg bg-white dark:bg-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-sm border border-slate-200 dark:border-slate-700 dark:text-white group"
               aria-label="Admin Dashboard"
               title={isRTL ? "ادمن" : "Admin"}
             >
@@ -84,12 +84,12 @@ export default function Home() {
           {/* Title and Description */}
           <div className="text-center">
             <h1
-              className={`text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 via-blue-800 to-purple-900 dark:from-slate-100 dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent mb-4 animate-fade-in ${isRTL ? "font-cairo" : ""}`}
+              className={`text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-slate-100 dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent mb-4 animate-fade-in ${isRTL ? "font-cairo" : ""}`}
             >
               {t.title}
             </h1>
             <p
-              className={`text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-2 animate-fade-in ${isRTL ? "font-cairo" : ""}`}
+              className={`text-base md:text-lg text-slate-700 dark:text-slate-300 max-w-2xl mx-auto mb-2 animate-fade-in ${isRTL ? "font-cairo" : ""}`}
               style={{ animationDelay: "0.1s" }}
             >
               {t.subtitle}{" "}
@@ -109,11 +109,11 @@ export default function Home() {
                 placeholder={t.searchPlaceholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full px-4 md:px-6 py-3 md:py-4 bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm border border-slate-200 dark:border-slate-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white dark:focus:bg-slate-600 transition-all shadow-sm hover:shadow-md text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 ${isRTL ? "text-right font-cairo pr-12 pl-4" : "pl-6 pr-12"}`}
+                className={`w-full px-4 md:px-6 py-3 md:py-4 bg-white dark:bg-slate-700/80 backdrop-blur-sm border border-slate-300 dark:border-slate-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white dark:focus:bg-slate-600 transition-all shadow-sm hover:shadow-md text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-500 ${isRTL ? "text-right font-cairo pr-12 pl-4" : "pl-6 pr-12"}`}
                 dir={isRTL ? "rtl" : "ltr"}
               />
               <div
-                className={`absolute top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 ${isRTL ? "left-4" : "right-4"}`}
+                className={`absolute top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-500 ${isRTL ? "left-4" : "right-4"}`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import toolsData from "../data/tools.json";
-import { Tool } from "../types";
+import { Tool, SortOption } from "../types";
 import FilterSidebar from "../components/FilterSidebar";
 import ToolGrid from "../components/ToolGrid";
 import ThemeToggle from "../components/ThemeToggle";
@@ -16,6 +16,7 @@ export default function Home() {
   const tools = toolsData as Tool[];
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortOption, setSortOption] = useState<SortOption>("alphabetical");
   const { t, isRTL } = useLanguage();
 
   const categories = useMemo(() => {
@@ -46,9 +47,9 @@ export default function Home() {
   }, [tools, selectedCategory, searchQuery]);
 
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors">
+    <main className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors">
       {/* Header */}
-      <header className="relative bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 border-b border-slate-200 dark:border-slate-700 py-8 md:py-12 px-4 md:px-6 overflow-hidden">
+      <header className="relative bg-gradient-to-br from-blue-50 via-purple-50/50 to-pink-50/30 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 border-b border-slate-200 dark:border-slate-700 py-8 md:py-12 px-4 md:px-6 overflow-hidden">
         {/* Animated gradient background */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 dark:from-blue-500/10 dark:via-purple-500/10 dark:to-pink-500/10 animate-gradient"></div>
 
@@ -57,9 +58,23 @@ export default function Home() {
           <div
             className={`flex items-center justify-end gap-2 mb-6 ${isRTL ? "flex-row-reverse" : ""}`}
           >
-            <a href="/admin/dashboard" className="p-2 rounded-lg bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 transition-colors shadow-sm dark:text-white group" aria-label="Admin Dashboard" title={isRTL ? "ادمن" : "Admin"}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-slate-600 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <a
+              href="/admin/dashboard"
+              className="p-2 rounded-lg bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 transition-colors shadow-sm dark:text-white group"
+              aria-label="Admin Dashboard"
+              title={isRTL ? "ادمن" : "Admin"}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-slate-600 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
             </a>
             <ThemeToggle />
@@ -129,8 +144,10 @@ export default function Home() {
             categories={categories}
             selectedCategory={selectedCategory}
             onSelectCategory={setSelectedCategory}
+            sortOption={sortOption}
+            onSortChange={setSortOption}
           />
-          <ToolGrid tools={filteredTools} />
+          <ToolGrid tools={filteredTools} sortOption={sortOption} />
         </div>
       </div>
 

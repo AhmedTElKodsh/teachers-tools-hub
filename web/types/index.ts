@@ -11,3 +11,16 @@ export interface Tool {
   bestFor: string;
   url: string;
 }
+
+export interface ToolVotes {
+  likes: number;
+  dislikes: number;
+}
+
+export type VoteType = "like" | "dislike" | null;
+
+export type SortOption =
+  | "alphabetical"
+  | "mostLiked"
+  | "leastDisliked"
+  | "bestRated";

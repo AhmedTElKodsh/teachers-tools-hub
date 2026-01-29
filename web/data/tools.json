@@ -1,5 +1,18 @@
 [
   {
+    "id": "notebooklm",
+    "name": "NotebookLM",
+    "description": "Google's AI-powered research and note-taking tool. Helps organize information, generate summaries, and create study guides from your sources.",
+    "description_ar": "أداة البحث وتدوين الملاحظات المدعومة بالذكاء الاصطناعي من Google. تساعد في تنظيم المعلومات وإنشاء الملخصات وإنشاء أدلة الدراسة من مصادرك.",
+    "freeTier": "Completely free to use",
+    "freeTier_ar": "مجاني تماماً للاستخدام",
+    "limitations": "Requires Google account",
+    "limitations_ar": "يتطلب حساب Google",
+    "categories": ["General Tools"],
+    "bestFor": "Research organization and note-taking",
+    "url": "https://notebooklm.google.com/"
+  },
+  {
     "id": "brisk-teaching",
     "name": "Brisk Teaching",
     "description": "AI-powered Chrome extension for instant feedback, lesson plans, and presentations. Integrates with Google Classroom, Docs, Slides, and YouTube.",
@@ -8,7 +21,7 @@
     "freeTier_ar": "مستوى مجاني غير محدود مع الميزات الأساسية",
     "limitations": "Premium features require subscription",
     "limitations_ar": "الميزات المتقدمة تتطلب اشتراكاً",
-    "categories": ["General Assistants"],
+    "categories": ["General Tools"],
     "bestFor": "Quick feedback and lesson planning",
     "url": "https://www.briskteaching.com"
   },
@@ -21,7 +34,7 @@
     "freeTier_ar": "مستوى مجاني متاح مع GPT-3.5",
     "limitations": "GPT-4 requires paid subscription",
     "limitations_ar": "GPT-4 يتطلب اشتراكاً مدفوعاً",
-    "categories": ["General Assistants"],
+    "categories": ["General Tools"],
     "bestFor": "General teaching assistance and content creation",
     "url": "https://chat.openai.com"
   },
@@ -34,7 +47,7 @@
     "freeTier_ar": "مستوى مجاني مع Gemini Pro",
     "limitations": "Advanced features in paid tiers",
     "limitations_ar": "الميزات المتقدمة في المستويات المدفوعة",
-    "categories": ["General Assistants"],
+    "categories": ["General Tools"],
     "bestFor": "Research and Google Workspace integration",
     "url": "https://gemini.google.com"
   },
@@ -47,7 +60,7 @@
     "freeTier_ar": "عمليات بحث مجانية مع الاستشهادات",
     "limitations": "Limited searches per day on free tier",
     "limitations_ar": "عدد محدود من عمليات البحث يومياً في المستوى المجاني",
-    "categories": ["General Assistants"],
+    "categories": ["General Tools"],
     "bestFor": "Research with source verification",
     "url": "https://www.perplexity.ai"
   },

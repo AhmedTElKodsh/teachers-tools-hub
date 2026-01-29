@@ -3,6 +3,7 @@
 import React from "react";
 import { Tool } from "../types";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useToolVotes } from "../hooks/useToolVotes";
 
 interface ToolCardProps {
   tool: Tool;
@@ -10,6 +11,10 @@ interface ToolCardProps {
 
 const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
   const { t, isRTL, language } = useLanguage();
+  const { getVotes, getUserVote, vote } = useToolVotes();
+
+  const votes = getVotes(tool.id);
+  const userVote = getUserVote(tool.id);
 
   // Get the appropriate text based on language
   const description =
@@ -28,6 +33,10 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
     language === "ar" && tool.categories[0] in t
       ? t[tool.categories[0] as keyof typeof t]
       : tool.categories[0];
+
+  const handleVote = (voteType: "like" | "dislike") => {
+    vote(tool.id, voteType);
+  };
 
   return (
     <div className="bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-4 md:p-6 flex flex-col h-full hover-scale animate-fade-in relative overflow-hidden group">
@@ -111,6 +120,41 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
               </p>
             </div>
           )}
+        </div>
+
+        {/* Like/Dislike Buttons */}
+        <div
+          className={`flex items-center gap-3 mb-4 ${isRTL ? "flex-row-reverse" : ""}`}
+        >
+          <button
+            onClick={() => handleVote("like")}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+              userVote === "like"
+                ? "bg-emerald-500 text-white shadow-md"
+                : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/30"
+            }`}
+            title={t.like}
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+            </svg>
+            <span>{votes.likes}</span>
+          </button>
+
+          <button
+            onClick={() => handleVote("dislike")}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+              userVote === "dislike"
+                ? "bg-red-500 text-white shadow-md"
+                : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-red-100 dark:hover:bg-red-900/30"
+            }`}
+            title={t.dislike}
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z" />
+            </svg>
+            <span>{votes.dislikes}</span>
+          </button>
         </div>
       </div>
 

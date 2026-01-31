@@ -28,7 +28,7 @@
   --accent-hover: #8b5cf6;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
@@ -41,6 +41,10 @@
   --color-accent-hover: var(--accent-hover);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Configure dark mode for Tailwind v4 */
+  --default-transition-duration: 200ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {

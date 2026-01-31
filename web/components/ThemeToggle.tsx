@@ -11,38 +11,37 @@ const ThemeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-lg bg-white/80 dark:bg-slate-700 hover:bg-white dark:hover:bg-slate-600 transition-colors shadow-sm"
+      className="relative p-2.5 rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 hover:from-slate-200 hover:to-slate-300 dark:hover:from-slate-600 dark:hover:to-slate-700 transition-all duration-300 shadow-md hover:shadow-lg border border-slate-300 dark:border-slate-600"
       aria-label={
         theme === "light" ? "Switch to dark mode" : "Switch to light mode"
       }
     >
       {theme === "dark" ? (
+        // Sun Icon - Completely redesigned with modern aesthetic
         <svg
-          className="w-5 h-5 text-yellow-400"
-          fill="none"
-          stroke="currentColor"
+          className="w-6 h-6 text-amber-400 transition-transform duration-300 hover:rotate-45"
+          fill="currentColor"
           viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                strokeWidth="2"
+                stroke="currentColor"
+                strokeLinecap="round"
+                fill="none"
           />
         </svg>
       ) : (
+        // Moon Icon - Completely redesigned with modern crescent and star
         <svg
-          className="w-5 h-5 text-slate-700"
-          fill="none"
-          stroke="currentColor"
+          className="w-6 h-6 text-indigo-700 transition-transform duration-300 hover:-rotate-12"
+          fill="currentColor"
           viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-          />
+          <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Z" />
+          <circle cx="19" cy="6" r="1.5" opacity="0.8" />
         </svg>
       )}
     </button>

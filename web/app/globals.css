@@ -1,18 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1e293b;
+  /* Light Theme - Recreated with improved palette */
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --surface: #ffffff;
+  --surface-hover: #f1f5f9;
+  --border: #e2e8f0;
+  --border-hover: #cbd5e1;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --accent: #8b5cf6;
+  --accent-hover: #7c3aed;
 }
 
 .dark {
+  /* Dark Theme - Adjusted to complement new light palette */
   --background: #0f172a;
   --foreground: #f1f5f9;
+  --surface: #1e293b;
+  --surface-hover: #334155;
+  --border: #334155;
+  --border-hover: #475569;
+  --primary: #60a5fa;
+  --primary-hover: #3b82f6;
+  --accent: #a78bfa;
+  --accent-hover: #8b5cf6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

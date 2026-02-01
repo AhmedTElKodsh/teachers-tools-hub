@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": "64a0d8fa-b578-40a9-8349-fcbab4a9cae2",
+    "toolName": "Test AI Grading Tool",
+    "toolUrl": "https://testaigrading.com",
+    "category": "Visual Content",
+    "description": "An amazing AI tool that helps teachers grade assignments automatically using advanced machine learning algorithms.",
+    "pricingModel": "Freemium",
+    "hasFreeTier": "no",
+    "additionalInfo": "",
+    "email": "teacher@test.com",
+    "status": "approved",
+    "createdAt": "2026-02-01T19:10:11.275Z"
+  }
+]

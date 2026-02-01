@@ -1,5 +1,20 @@
 [
   {
+    "id": "notebooklm",
+    "name": "NotebookLM",
+    "description": "Google's AI-powered research and note-taking tool. Helps organize information, generate summaries, and create study guides from your sources.",
+    "description_ar": "أداة البحث وتدوين الملاحظات المدعومة بالذكاء الاصطناعي من Google. تساعد في تنظيم المعلومات وإنشاء الملخصات وإنشاء أدلة الدراسة من مصادرك.",
+    "freeTier": "Completely free to use",
+    "freeTier_ar": "مجاني تماماً للاستخدام",
+    "limitations": "Requires Google account",
+    "limitations_ar": "يتطلب حساب Google",
+    "categories": [
+      "General Tools"
+    ],
+    "bestFor": "Research organization and note-taking",
+    "url": "https://notebooklm.google.com/"
+  },
+  {
     "id": "brisk-teaching",
     "name": "Brisk Teaching",
     "description": "AI-powered Chrome extension for instant feedback, lesson plans, and presentations. Integrates with Google Classroom, Docs, Slides, and YouTube.",
@@ -8,7 +23,9 @@
     "freeTier_ar": "مستوى مجاني غير محدود مع الميزات الأساسية",
     "limitations": "Premium features require subscription",
     "limitations_ar": "الميزات المتقدمة تتطلب اشتراكاً",
-    "categories": ["General Assistants"],
+    "categories": [
+      "General Tools"
+    ],
     "bestFor": "Quick feedback and lesson planning",
     "url": "https://www.briskteaching.com"
   },
@@ -21,7 +38,9 @@
     "freeTier_ar": "مستوى مجاني متاح مع GPT-3.5",
     "limitations": "GPT-4 requires paid subscription",
     "limitations_ar": "GPT-4 يتطلب اشتراكاً مدفوعاً",
-    "categories": ["General Assistants"],
+    "categories": [
+      "General Tools"
+    ],
     "bestFor": "General teaching assistance and content creation",
     "url": "https://chat.openai.com"
   },
@@ -34,7 +53,9 @@
     "freeTier_ar": "مستوى مجاني مع Gemini Pro",
     "limitations": "Advanced features in paid tiers",
     "limitations_ar": "الميزات المتقدمة في المستويات المدفوعة",
-    "categories": ["General Assistants"],
+    "categories": [
+      "General Tools"
+    ],
     "bestFor": "Research and Google Workspace integration",
     "url": "https://gemini.google.com"
   },
@@ -47,7 +68,9 @@
     "freeTier_ar": "عمليات بحث مجانية مع الاستشهادات",
     "limitations": "Limited searches per day on free tier",
     "limitations_ar": "عدد محدود من عمليات البحث يومياً في المستوى المجاني",
-    "categories": ["General Assistants"],
+    "categories": [
+      "General Tools"
+    ],
     "bestFor": "Research with source verification",
     "url": "https://www.perplexity.ai"
   },
@@ -60,7 +83,9 @@
     "freeTier_ar": "مستوى مجاني مع دروس غير محدودة",
     "limitations": "Some advanced features require premium",
     "limitations_ar": "بعض الميزات المتقدمة تتطلب الاشتراك المميز",
-    "categories": ["Lesson Planning"],
+    "categories": [
+      "Lesson Planning"
+    ],
     "bestFor": "Interactive student engagement",
     "url": "https://curipod.com"
   },
@@ -73,7 +98,9 @@
     "freeTier_ar": "مجاني مع تعديلات غير محدودة",
     "limitations": "None for basic features",
     "limitations_ar": "لا توجد قيود للميزات الأساسية",
-    "categories": ["Lesson Planning"],
+    "categories": [
+      "Lesson Planning"
+    ],
     "bestFor": "Differentiating reading materials",
     "url": "https://diffit.me"
   },
@@ -86,7 +113,9 @@
     "freeTier_ar": "مستوى مجاني محدود متاح",
     "limitations": "Full features require subscription",
     "limitations_ar": "الميزات الكاملة تتطلب اشتراكاً",
-    "categories": ["Lesson Planning"],
+    "categories": [
+      "Lesson Planning"
+    ],
     "bestFor": "Standards-aligned lesson planning",
     "url": "https://eduaide.ai"
   },
@@ -99,7 +128,9 @@
     "freeTier_ar": "مجاني لمستخدمي Khan Academy",
     "limitations": "Some features require Khan Academy membership",
     "limitations_ar": "بعض الميزات تتطلب عضوية Khan Academy",
-    "categories": ["Lesson Planning"],
+    "categories": [
+      "Lesson Planning"
+    ],
     "bestFor": "Personalized student tutoring",
     "url": "https://www.khanacademy.org/khan-labs"
   },
@@ -112,7 +143,9 @@
     "freeTier_ar": "مستوى مجاني سخي مع معظم الأدوات",
     "limitations": "Some premium tools require subscription",
     "limitations_ar": "بعض الأدوات المميزة تتطلب اشتراكاً",
-    "categories": ["Lesson Planning"],
+    "categories": [
+      "Lesson Planning"
+    ],
     "bestFor": "Comprehensive teaching toolkit",
     "url": "https://www.magicschool.ai"
   },
@@ -125,7 +158,9 @@
     "freeTier_ar": "مستوى مجاني مع مهام محدودة",
     "limitations": "Unlimited assignments require premium",
     "limitations_ar": "المهام غير المحدودة تتطلب الاشتراك المميز",
-    "categories": ["Lesson Planning"],
+    "categories": [
+      "Lesson Planning"
+    ],
     "bestFor": "Converting documents to digital assignments",
     "url": "https://teachermade.com"
   },
@@ -138,7 +173,9 @@
     "freeTier_ar": "مستوى مجاني مع قوالب أساسية",
     "limitations": "Advanced templates require Pro subscription",
     "limitations_ar": "القوالب المتقدمة تتطلب اشتراك Pro",
-    "categories": ["Presentation Tools"],
+    "categories": [
+      "Presentation Tools"
+    ],
     "bestFor": "Professional-looking presentations",
     "url": "https://www.beautiful.ai"
   },
@@ -151,7 +188,10 @@
     "freeTier_ar": "مستوى مجاني سخي مع آلاف القوالب",
     "limitations": "Premium templates and features require Canva Pro",
     "limitations_ar": "القوالب والميزات المميزة تتطلب Canva Pro",
-    "categories": ["Presentation Tools", "Visual Content"],
+    "categories": [
+      "Presentation Tools",
+      "Visual Content"
+    ],
     "bestFor": "Visual content creation",
     "url": "https://www.canva.com"
   },
@@ -164,7 +204,9 @@
     "freeTier_ar": "مستوى مجاني مع عروض تقديمية محدودة",
     "limitations": "Unlimited presentations require paid plan",
     "limitations_ar": "العروض التقديمية غير المحدودة تتطلب خطة مدفوعة",
-    "categories": ["Presentation Tools"],
+    "categories": [
+      "Presentation Tools"
+    ],
     "bestFor": "Quick AI-generated presentations",
     "url": "https://gamma.app"
   },
@@ -177,7 +219,9 @@
     "freeTier_ar": "مجاني تماماً مع الإشارة للمصدر",
     "limitations": "Must credit Slidesgo in presentations",
     "limitations_ar": "يجب الإشارة إلى Slidesgo في العروض التقديمية",
-    "categories": ["Presentation Tools"],
+    "categories": [
+      "Presentation Tools"
+    ],
     "bestFor": "Free educational presentation templates",
     "url": "https://slidesgo.com"
   },
@@ -190,7 +234,9 @@
     "freeTier_ar": "مستوى مجاني للمعلمين الأفراد",
     "limitations": "School-wide features require premium",
     "limitations_ar": "ميزات على مستوى المدرسة تتطلب الاشتراك المميز",
-    "categories": ["Student Assessment"],
+    "categories": [
+      "Student Assessment"
+    ],
     "bestFor": "Real-time student assessment",
     "url": "https://www.formative.com"
   },
@@ -203,7 +249,9 @@
     "freeTier_ar": "مجاني للمدرسين",
     "limitations": "Some features limited in free tier",
     "limitations_ar": "بعض الميزات محدودة في المستوى المجاني",
-    "categories": ["Student Assessment"],
+    "categories": [
+      "Student Assessment"
+    ],
     "bestFor": "Efficient grading and analytics",
     "url": "https://www.gradescope.com"
   },
@@ -216,7 +264,9 @@
     "freeTier_ar": "مستوى مجاني محدود متاح",
     "limitations": "Full features require school subscription",
     "limitations_ar": "الميزات الكاملة تتطلب اشتراك المدرسة",
-    "categories": ["Student Assessment"],
+    "categories": [
+      "Student Assessment"
+    ],
     "bestFor": "Writing instruction and feedback",
     "url": "https://www.writable.com"
   },
@@ -229,7 +279,9 @@
     "freeTier_ar": "مجاني للطلاب والمعلمين",
     "limitations": "None for core features",
     "limitations_ar": "لا توجد قيود للميزات الأساسية",
-    "categories": ["Study & Review"],
+    "categories": [
+      "Study & Review"
+    ],
     "bestFor": "Creating study materials from notes",
     "url": "https://knowt.com"
   },
@@ -242,7 +294,9 @@
     "freeTier_ar": "مستوى مجاني مع الميزات الأساسية",
     "limitations": "Advanced features require Quizlet Plus",
     "limitations_ar": "الميزات المتقدمة تتطلب Quizlet Plus",
-    "categories": ["Study & Review"],
+    "categories": [
+      "Study & Review"
+    ],
     "bestFor": "Flashcards and study games",
     "url": "https://quizlet.com"
   },
@@ -255,7 +309,9 @@
     "freeTier_ar": "مجاني للمعلمين مع اختبارات غير محدودة",
     "limitations": "Some features require Super plan",
     "limitations_ar": "بعض الميزات تتطلب خطة Super",
-    "categories": ["Study & Review"],
+    "categories": [
+      "Study & Review"
+    ],
     "bestFor": "Engaging quiz-based learning",
     "url": "https://quizizz.com"
   },
@@ -268,7 +324,9 @@
     "freeTier_ar": "مستوى مجاني مع علامة مائية",
     "limitations": "Watermark removal requires paid plan",
     "limitations_ar": "إزالة العلامة المائية تتطلب خطة مدفوعة",
-    "categories": ["Video Creation"],
+    "categories": [
+      "Video Creation"
+    ],
     "bestFor": "Quick text-to-video conversion",
     "url": "https://fliki.ai"
   },
@@ -281,7 +339,9 @@
     "freeTier_ar": "مستوى مجاني مع صادرات محدودة",
     "limitations": "Watermark on free tier, limited exports",
     "limitations_ar": "علامة مائية في المستوى المجاني، صادرات محدودة",
-    "categories": ["Video Creation"],
+    "categories": [
+      "Video Creation"
+    ],
     "bestFor": "Template-based video creation",
     "url": "https://invideo.io"
   },
@@ -294,7 +354,9 @@
     "freeTier_ar": "تجربة مجانية محدودة متاحة",
     "limitations": "Requires paid subscription for regular use",
     "limitations_ar": "يتطلب اشتراكاً مدفوعاً للاستخدام المنتظم",
-    "categories": ["Video Creation"],
+    "categories": [
+      "Video Creation"
+    ],
     "bestFor": "AI presenter videos",
     "url": "https://www.synthesia.io"
   },
@@ -307,7 +369,9 @@
     "freeTier_ar": "أرصدة مجانية محدودة شهرياً",
     "limitations": "Additional images require credit purchase",
     "limitations_ar": "الصور الإضافية تتطلب شراء أرصدة",
-    "categories": ["Visual Content"],
+    "categories": [
+      "Visual Content"
+    ],
     "bestFor": "Custom educational illustrations",
     "url": "https://openai.com/dall-e"
   },
@@ -320,8 +384,26 @@
     "freeTier_ar": "لا يوجد مستوى مجاني حالياً",
     "limitations": "Requires paid subscription",
     "limitations_ar": "يتطلب اشتراكاً مدفوعاً",
-    "categories": ["Visual Content"],
+    "categories": [
+      "Visual Content"
+    ],
     "bestFor": "High-quality artistic images",
     "url": "https://www.midjourney.com"
+  },
+  {
+    "id": "00a40669-e4a3-448c-a194-268196ef141d",
+    "name": "Test AI Grading Tool",
+    "description": "An amazing AI tool that helps teachers grade assignments automatically using advanced machine learning algorithms.",
+    "url": "https://testaigrading.com",
+    "categories": [
+      "Visual Content"
+    ],
+    "bestFor": "Automated grading and assessment",
+    "freeTier": "Limited free tier",
+    "limitations": "No free tier",
+    "pricingModel": "Freemium",
+    "description_ar": "An amazing AI tool that helps teachers grade assignments automatically using advanced machine learning algorithms.",
+    "freeTier_ar": "Limited free tier",
+    "limitations_ar": ""
   }
 ]

@@ -1,7 +1,7 @@
 "use client";
 
-import { ThemeProvider } from "../contexts/ThemeContext";
 import { LanguageProvider } from "../contexts/LanguageContext";
+import { ThemeProvider } from "../contexts/ThemeContext";
 
 export default function ClientProviders({
   children,

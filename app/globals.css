@@ -1,33 +1,87 @@
 @import "tailwindcss";
 
-:root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-}
+/* ============================================
+   CSS VARIABLES - COLOR SYSTEM
+   ============================================ */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f1f5f9;
-  }
+:root {
+  /* Light Theme - Soft, professional palette */
+  --background: #ffffff;
+  --foreground: #000000;
+  --surface: #f8fafc;
+  --surface-hover: #f1f5f9;
+  --border: #e2e8f0;
+  --border-hover: #cbd5e1;
+
+  /* Light theme gradients - Softer, less intense */
+  --gradient-start: #eff6ff;
+  --gradient-mid: #faf5ff;
+  --gradient-end: #fdf2f8;
+
+  /* Primary colors - Blue to Purple */
+  --primary-from: #3b82f6;
+  --primary-to: #8b5cf6;
+  --primary-hover-from: #2563eb;
+  --primary-hover-to: #7c3aed;
+
+  /* Accent colors */
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
 }
 
 .dark {
-  --background: #0f172a;
-  --foreground: #f1f5f9;
+  /* Dark Theme - Deep, rich palette with proper contrast */
+  --background: #0a0f1e;
+  --foreground: #ffffff;
+  --surface: #1a1f35;
+  --surface-hover: #252b45;
+  --border: #2d3548;
+  --border-hover: #3d4560;
+
+  /* Dark theme gradients - Subtle, elegant */
+  --gradient-start: #0f1629;
+  --gradient-mid: #1a1f35;
+  --gradient-end: #252b45;
+
+  /* Primary colors - Brighter for dark backgrounds */
+  --primary-from: #60a5fa;
+  --primary-to: #a78bfa;
+  --primary-hover-from: #3b82f6;
+  --primary-hover-to: #8b5cf6;
+
+  /* Accent colors - Adjusted for dark mode */
+  --accent-emerald: #34d399;
+  --accent-amber: #fbbf24;
+  --accent-rose: #fb7185;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Configure dark mode for Tailwind v4 */
+  --default-transition-duration: 200ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 /* RTL Support */
@@ -35,7 +89,17 @@ body {
   direction: rtl;
 }
 
-/* Gradient Animations */
+/* Smooth transitions for theme switching */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
 @keyframes gradient-shift {
   0%,
   100% {
@@ -51,7 +115,6 @@ body {
   animation: gradient-shift 8s ease infinite;
 }
 
-/* Fade In Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -68,7 +131,24 @@ body {
   opacity: 0;
 }
 
-/* Scale on Hover */
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ============================================
+   HOVER EFFECTS
+   ============================================ */
+
 .hover-scale {
   transition:
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -84,28 +164,387 @@ body {
 
 .dark .hover-scale:hover {
   box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.4),
+    0 20px 25px -5px rgba(0, 0, 0, 0.5),
     0 10px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
-/* Pulse Animation for Buttons */
-@keyframes pulse-subtle {
-  0%,
+/* ============================================
+   COMPONENT-SPECIFIC DARK THEME STYLING
+   ============================================ */
+
+/* Main Background */
+main {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* ============================================
+   HEADER COMPONENT
+   ============================================ */
+
+/* Light Theme Header - Soft gradient */
+header {
+  background: linear-gradient(
+    135deg,
+    var(--gradient-start) 0%,
+    var(--gradient-mid) 50%,
+    var(--gradient-end) 100%
+  );
+  border-bottom: 1px solid var(--border);
+}
+
+/* Dark Theme Header - Deep gradient with subtle glow */
+.dark header {
+  background: linear-gradient(
+    135deg,
+    #0a0f1e 0%,
+    #1a1f35 25%,
+    #252b45 50%,
+    #1a1f35 75%,
+    #0a0f1e 100%
+  );
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(96, 165, 250, 0.05);
+}
+
+/* Ensure header text is visible */
+.dark header h1 {
+  /* Gradient text is already visible */
+}
+
+/* Header animated gradient overlay */
+.dark header .animate-gradient {
+  background: linear-gradient(
+    90deg,
+    rgba(96, 165, 250, 0.05) 0%,
+    rgba(167, 139, 250, 0.05) 50%,
+    rgba(96, 165, 250, 0.05) 100%
+  );
+}
+
+/* ============================================
+   TOOL CARDS COMPONENT
+   ============================================ */
+
+/* Light Theme Cards */
+.tool-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tool-card:hover {
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  border-color: var(--border-hover);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+/* Dark Theme Cards - Rich gradient with glow */
+.dark .tool-card {
+  background: linear-gradient(135deg, #1a1f35 0%, #252b45 100%);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(96, 165, 250, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .tool-card:hover {
+  background: linear-gradient(135deg, #252b45 0%, #2d3548 100%);
+  border-color: var(--border-hover);
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(96, 165, 250, 0.08);
+  transform: translateY(-4px);
+}
+
+/* Card gradient overlay on hover */
+.dark .tool-card .group-hover\:opacity-100 {
+  background: linear-gradient(
+    135deg,
+    rgba(96, 165, 250, 0.05) 0%,
+    rgba(167, 139, 250, 0.05) 100%
+  );
+}
+
+/* ============================================
+   SIDEBAR COMPONENT
+   ============================================ */
+
+/* Light Theme Sidebar */
+.sidebar-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Theme Sidebar - Matching card style */
+.dark .sidebar-card {
+  background: linear-gradient(135deg, #1a1f35 0%, #252b45 100%);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(96, 165, 250, 0.03);
+}
+
+/* ============================================
+   BUTTONS & INTERACTIVE ELEMENTS
+   ============================================ */
+
+/* Primary gradient buttons - Light theme */
+.btn-gradient-primary {
+  background: linear-gradient(
+    90deg,
+    var(--primary-from) 0%,
+    var(--primary-to) 100%
+  );
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-primary:hover {
+  background: linear-gradient(
+    90deg,
+    var(--primary-hover-from) 0%,
+    var(--primary-hover-to) 100%
+  );
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Primary gradient buttons - Dark theme */
+.dark .btn-gradient-primary {
+  background: linear-gradient(
+    90deg,
+    var(--primary-from) 0%,
+    var(--primary-to) 100%
+  );
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.15);
+}
+
+.dark .btn-gradient-primary:hover {
+  background: linear-gradient(
+    90deg,
+    var(--primary-hover-from) 0%,
+    var(--primary-hover-to) 100%
+  );
+  box-shadow: 0 4px 20px rgba(96, 165, 250, 0.3);
+}
+
+/* Category badges - Dark theme enhancement */
+.dark .category-badge {
+  background: linear-gradient(
+    90deg,
+    rgba(96, 165, 250, 0.9) 0%,
+    rgba(167, 139, 250, 0.9) 100%
+  );
+  box-shadow: 0 0 15px rgba(96, 165, 250, 0.2);
+}
+
+/* ============================================
+   FORM INPUTS
+   ============================================ */
+
+/* Search input - Dark theme */
+.dark input[type="text"],
+.dark input[type="email"],
+.dark textarea,
+.dark select {
+  background: rgba(26, 31, 53, 0.8);
+  border-color: var(--border);
+  color: var(--foreground);
+  backdrop-filter: blur(10px);
+}
+
+.dark input[type="text"]:focus,
+.dark input[type="email"]:focus,
+.dark textarea:focus,
+.dark select:focus {
+  background: rgba(26, 31, 53, 0.95);
+  border-color: var(--primary-from);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.dark footer {
+  background: linear-gradient(135deg, #0a0f1e 0%, #1a1f35 100%);
+  border-top: 1px solid var(--border);
+}
+
+/* ============================================
+   TEXT GRADIENTS & EFFECTS
+   ============================================ */
+
+/* Animated text gradient for titles */
+.text-gradient-animated {
+  background: linear-gradient(
+    90deg,
+    var(--gradient-primary-start),
+    var(--gradient-primary-end),
+    var(--gradient-primary-start)
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 8s linear infinite;
+}
+
+/* ============================================
+   LOADING & SKELETON STATES
+   ============================================ */
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
   100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.9;
+    background-position: 1000px 0;
   }
 }
 
-.animate-pulse-subtle {
-  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--surface) 0%,
+    var(--surface-hover) 50%,
+    var(--surface) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
 }
 
-/* Smooth transitions */
-* {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 200ms;
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+/* Light theme scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%);
+  border-radius: 10px;
+  border: 2px solid #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%);
+}
+
+/* Dark theme scrollbar */
+.dark ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1a2332;
+  border-radius: 10px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3d4f6b 0%, #2d3b52 100%);
+  border-radius: 10px;
+  border: 2px solid #1a2332;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #60a5fa 0%, #a78bfa 100%);
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
+}
+
+/* ============================================
+   FOCUS STATES
+   ============================================ */
+
+/* Enhanced focus rings for accessibility */
+:focus-visible {
+  outline: 2px solid var(--gradient-primary-start);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.dark :focus-visible {
+  outline-color: var(--gradient-primary-start);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.2);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(26, 35, 50, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(96, 165, 250, 0.1);
+}
+
+/* Glow effect for interactive elements */
+.glow-on-hover:hover {
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+}
+
+.dark .glow-on-hover:hover {
+  box-shadow: 0 0 30px rgba(96, 165, 250, 0.5);
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .hover-scale:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  .dark .hover-scale:hover {
+    box-shadow:
+      0 10px 20px -5px rgba(96, 165, 250, 0.2),
+      0 5px 10px -5px rgba(167, 139, 250, 0.15);
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .dark {
+    --background: #ffffff;
+    --foreground: #000000;
+  }
+
+  .hover-scale,
+  .animate-gradient,
+  .animate-fade-in {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================
+   DARK MODE TEXT CONTRAST IMPROVEMENTS
+   ============================================ */
+
+/* Removed all !important text color overrides - Tailwind dark: variants handle theme switching properly */

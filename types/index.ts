@@ -11,3 +11,14 @@ export interface Tool {
   bestFor: string;
   url: string;
 }
+
+export interface ToolVotes {
+  totalStars: number;
+  ratingCount: number;
+}
+
+export type RatingValue = 1 | 2 | 3 | 4 | 5 | null;
+
+export type SortOption = "alphabetical" | "highestRated" | "lowestRated";
+
+export type FilterOption = "all" | "4plus" | "3plus";

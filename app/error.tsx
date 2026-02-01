@@ -25,10 +25,10 @@ export default function Error({
             />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-slate-900 mb-4">
+        <h2 className="text-2xl font-bold text-foreground mb-4">
           Something went wrong!
         </h2>
-        <p className="text-slate-600 mb-6">
+        <p className="text-foreground/80 mb-6">
           We encountered an unexpected error. Please try again.
         </p>
         <button

@@ -2,11 +2,11 @@
 
 import React, { useState, useMemo } from "react";
 import toolsData from "../data/tools.json";
-import { Tool } from "../types";
+import { Tool, SortOption, FilterOption } from "../types";
 import FilterSidebar from "../components/FilterSidebar";
 import ToolGrid from "../components/ToolGrid";
-import ThemeToggle from "../components/ThemeToggle";
 import LanguageToggle from "../components/LanguageToggle";
+import ThemeToggle from "../components/ThemeToggle";
 import { useLanguage } from "../contexts/LanguageContext";
 
 // Disable static generation for this page
@@ -16,6 +16,8 @@ export default function Home() {
   const tools = toolsData as Tool[];
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortOption, setSortOption] = useState<SortOption>("alphabetical");
+  const [filterOption, setFilterOption] = useState<FilterOption>("all");
   const { t, isRTL } = useLanguage();
 
   const categories = useMemo(() => {
@@ -46,17 +48,36 @@ export default function Home() {
   }, [tools, selectedCategory, searchQuery]);
 
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors">
+    <main className="min-h-screen transition-colors">
       {/* Header */}
-      <header className="relative bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 border-b border-slate-200 dark:border-slate-700 py-8 md:py-12 px-4 md:px-6 overflow-hidden">
+      <header className="relative py-8 md:py-12 px-4 md:px-6 overflow-hidden">
         {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 dark:from-blue-500/10 dark:via-purple-500/10 dark:to-pink-500/10 animate-gradient"></div>
+        <div className="absolute inset-0 animate-gradient"></div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Top Bar with Toggles */}
           <div
             className={`flex items-center justify-end gap-2 mb-6 ${isRTL ? "flex-row-reverse" : ""}`}
           >
+            <a
+              href="/admin/dashboard"
+              className="p-2 rounded-lg bg-white dark:bg-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-700/80 transition-colors shadow-sm border border-slate-200 dark:border-slate-600 dark:text-white group backdrop-blur-sm"
+              aria-label="Admin Dashboard"
+              title={isRTL ? "ادمن" : "Admin"}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-slate-900 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </a>
             <ThemeToggle />
             <LanguageToggle />
           </div>
@@ -64,16 +85,16 @@ export default function Home() {
           {/* Title and Description */}
           <div className="text-center">
             <h1
-              className={`text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 via-blue-800 to-purple-900 dark:from-slate-100 dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent mb-4 animate-fade-in ${isRTL ? "font-cairo" : ""}`}
+              className={`text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent mb-4 animate-fade-in drop-shadow-sm ${isRTL ? "font-cairo" : ""}`}
             >
               {t.title}
             </h1>
             <p
-              className={`text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-2 animate-fade-in ${isRTL ? "font-cairo" : ""}`}
+              className={`text-base md:text-lg text-foreground dark:text-foreground max-w-2xl mx-auto mb-2 animate-fade-in ${isRTL ? "font-cairo" : ""}`}
               style={{ animationDelay: "0.1s" }}
             >
               {t.subtitle}{" "}
-              <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text font-bold">
+              <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text font-bold drop-shadow-sm">
                 {t.hours}
               </span>
               . {t.forClassrooms}
@@ -89,11 +110,11 @@ export default function Home() {
                 placeholder={t.searchPlaceholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full px-4 md:px-6 py-3 md:py-4 bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm border border-slate-200 dark:border-slate-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white dark:focus:bg-slate-600 transition-all shadow-sm hover:shadow-md text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 ${isRTL ? "text-right font-cairo pr-12 pl-4" : "pl-6 pr-12"}`}
+                className={`w-full px-4 md:px-6 py-3 md:py-4 bg-white/90 dark:bg-slate-800/80 backdrop-blur-md border border-slate-300 dark:border-slate-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent focus:bg-white dark:focus:bg-slate-800/95 transition-all shadow-sm hover:shadow-md dark:shadow-lg dark:hover:shadow-xl text-foreground dark:text-foreground placeholder-slate-400 dark:placeholder-slate-400 ${isRTL ? "text-right font-cairo pr-12 pl-4" : "pl-6 pr-12"}`}
                 dir={isRTL ? "rtl" : "ltr"}
               />
               <div
-                className={`absolute top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 ${isRTL ? "left-4" : "right-4"}`}
+                className={`absolute top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate-400 ${isRTL ? "left-4" : "right-4"}`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -124,15 +145,23 @@ export default function Home() {
             categories={categories}
             selectedCategory={selectedCategory}
             onSelectCategory={setSelectedCategory}
+            sortOption={sortOption}
+            onSortChange={setSortOption}
+            filterOption={filterOption}
+            onFilterChange={setFilterOption}
           />
-          <ToolGrid tools={filteredTools} />
+          <ToolGrid
+            tools={filteredTools}
+            sortOption={sortOption}
+            filterOption={filterOption}
+          />
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 py-6 md:py-8 px-4 md:px-6 mt-12">
+      <footer className="border-t py-6 md:py-8 px-4 md:px-6 mt-12">
         <div
-          className={`max-w-7xl mx-auto text-center text-slate-500 dark:text-slate-400 text-sm ${isRTL ? "font-cairo" : ""}`}
+          className={`max-w-7xl mx-auto text-center text-foreground/80 dark:text-foreground/80 text-sm ${isRTL ? "font-cairo" : ""}`}
         >
           <p>{t.footer}</p>
         </div>

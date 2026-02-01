@@ -1,54 +1,57 @@
-# Teachers Tools Hub
+# Teachers Tools Hub 🎓
 
-A Next.js application designed for K-12 educators to discover verified, genuinely free AI tools.
+A bilingual (English/Arabic) web application showcasing 25+ verified, genuinely free AI tools designed to save K-12 educators 7-10 hours weekly.
 
-## 🚀 Getting Started
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/AhmedTElKodsh/teachers-tools-hub)
 
-1. **Install Dependencies:**
-   ```bash
-   npm install
-   ```
+## ✨ Features
 
-2. **Run Development Server:**
-   ```bash
-   npm run dev
-   ```
+- 🌍 **Bilingual Support**: Full English and Arabic translations with RTL layout
+- 🎨 **Modern UI**: Gradient color palette with smooth animations
+- 🌓 **Dark/Light Mode**: Theme toggle with system preference detection
+- 📱 **Fully Responsive**: Optimized for mobile, tablet, and desktop
+- ⚡ **Fast Performance**: Built with Next.js 16 and Turbopack
+- 🔍 **Search & Filter**: Find tools by name, category, or workflow
+- 🎯 **25+ AI Tools**: Curated collection for lesson planning, assessment, content creation, and more
 
-3. **Build for Production:**
-   ```bash
-   npm run build
-   ```
+## 🚀 Quick Start
 
-## 📂 Project Structure
+```bash
+# Clone the repository
+git clone https://github.com/AhmedTElKodsh/teachers-tools-hub.git
 
-- `/data`: Contains `tools.json`, the primary database of AI tools.
-- `/components`: Modular UI components (`ToolCard`, `FilterSidebar`, `ToolGrid`).
-- `/types`: TypeScript interfaces for the application.
-- `/app`: Next.js App Router and main page logic.
+# Navigate to the web directory
+cd teachers-tools-hub/web
 
-## 🛠️ Data Management
+# Install dependencies
+npm install
 
-To add or update tools, modify `data/tools.json`. Every tool follows this structure:
-
-```json
-{
-  "id": "unique-id",
-  "name": "Tool Name",
-  "description": "Short description...",
-  "freeTier": "What's free...",
-  "limitations": "Optional limitations...",
-  "categories": ["Category 1", "Category 2"],
-  "bestFor": "Target use case",
-  "url": "https://link-to-tool.com"
-}
+# Run development server
+npm run dev
 ```
 
-## 📝 Categories Used
-The hub uses a **Workflow-First** taxonomy:
-- Lesson Planning
-- Student Assessment & Feedback
-- Visual Content Creation
-- Presentation Tools
-- Study & Review
-- Video Creation
-- General Assistants
+Open [http://localhost:3000](http://localhost:3000) to view the application.
+
+## 🌐 Deployment
+
+### Deploy to Vercel
+
+Click the button above or:
+
+```bash
+cd web
+vercel --prod
+```
+
+**Configuration**:
+- Root Directory: `web`
+- Framework: Next.js
+- Build Command: `npm run build`
+
+## 📧 Contact
+
+Ahmed Tawfik - [@AhmedTElKodsh](https://github.com/AhmedTElKodsh)
+
+---
+
+**Built with ❤️ for educators worldwide**

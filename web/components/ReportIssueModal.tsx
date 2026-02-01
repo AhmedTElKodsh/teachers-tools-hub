@@ -75,7 +75,7 @@ const ReportIssueModal: React.FC<ReportIssueModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        className="bg-background rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-border"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-6 md:p-8">
@@ -83,13 +83,13 @@ const ReportIssueModal: React.FC<ReportIssueModalProps> = ({
             className={`flex items-center justify-between mb-6 ${isRTL ? "flex-row-reverse" : ""}`}
           >
             <h2
-              className={`text-2xl font-bold text-slate-900 dark:text-slate-100 ${isRTL ? "font-cairo" : ""}`}
+              className={`text-2xl font-bold text-foreground dark:text-foreground ${isRTL ? "font-cairo" : ""}`}
             >
               {t.reportIssue || "Report an Issue"}
             </h2>
             <button
               onClick={onClose}
-              className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
+              className="text-foreground/70 hover:text-foreground dark:text-foreground/70 dark:hover:text-foreground transition-colors"
             >
               <svg
                 className="w-6 h-6"
@@ -110,7 +110,7 @@ const ReportIssueModal: React.FC<ReportIssueModalProps> = ({
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label
-                className={`block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 ${isRTL ? "text-right font-cairo" : ""}`}
+                className={`block text-sm font-medium text-foreground dark:text-foreground mb-2 ${isRTL ? "text-right font-cairo" : ""}`}
               >
                 {t.issueType || "Issue Type"} *
               </label>
@@ -119,7 +119,7 @@ const ReportIssueModal: React.FC<ReportIssueModalProps> = ({
                 value={formData.issueType}
                 onChange={handleChange}
                 required
-                className={`w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 ${isRTL ? "text-right font-cairo" : ""}`}
+                className={`w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent bg-surface text-foreground ${isRTL ? "text-right font-cairo" : ""}`}
               >
                 <option value="">
                   {t.selectIssueType || "Select issue type"}
@@ -142,7 +142,7 @@ const ReportIssueModal: React.FC<ReportIssueModalProps> = ({
 
             <div>
               <label
-                className={`block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 ${isRTL ? "text-right font-cairo" : ""}`}
+                className={`block text-sm font-medium text-foreground dark:text-foreground mb-2 ${isRTL ? "text-right font-cairo" : ""}`}
               >
                 {t.toolName || "Tool Name"} ({t.ifApplicable || "if applicable"}
                 )
@@ -152,14 +152,14 @@ const ReportIssueModal: React.FC<ReportIssueModalProps> = ({
                 name="toolName"
                 value={formData.toolName}
                 onChange={handleChange}
-                className={`w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 ${isRTL ? "text-right font-cairo" : ""}`}
+                className={`w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent bg-surface text-foreground ${isRTL ? "text-right font-cairo" : ""}`}
                 dir={isRTL ? "rtl" : "ltr"}
               />
             </div>
 
             <div>
               <label
-                className={`block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 ${isRTL ? "text-right font-cairo" : ""}`}
+                className={`block text-sm font-medium text-foreground dark:text-foreground mb-2 ${isRTL ? "text-right font-cairo" : ""}`}
               >
                 {t.description || "Description"} *
               </label>
@@ -172,14 +172,14 @@ const ReportIssueModal: React.FC<ReportIssueModalProps> = ({
                 placeholder={
                   t.describeIssue || "Please describe the issue in detail..."
                 }
-                className={`w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 ${isRTL ? "text-right font-cairo" : ""}`}
+                className={`w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent bg-surface text-foreground ${isRTL ? "text-right font-cairo" : ""}`}
                 dir={isRTL ? "rtl" : "ltr"}
               />
             </div>
 
             <div>
               <label
-                className={`block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 ${isRTL ? "text-right font-cairo" : ""}`}
+                className={`block text-sm font-medium text-foreground dark:text-foreground mb-2 ${isRTL ? "text-right font-cairo" : ""}`}
               >
                 {t.yourEmail || "Your Email"} ({t.optional || "optional"})
               </label>
@@ -188,7 +188,7 @@ const ReportIssueModal: React.FC<ReportIssueModalProps> = ({
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100"
+                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent bg-surface text-foreground"
                 dir="ltr"
               />
             </div>
@@ -229,7 +229,7 @@ const ReportIssueModal: React.FC<ReportIssueModalProps> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className={`px-6 py-3 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-lg font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all ${isRTL ? "font-cairo" : ""}`}
+                className={`px-6 py-3 border border-border text-foreground rounded-lg font-semibold hover:bg-surface transition-all ${isRTL ? "font-cairo" : ""}`}
               >
                 {t.cancel || "Cancel"}
               </button>

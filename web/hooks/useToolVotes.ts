@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ToolVotes, VoteType } from "../types";
+import { ToolVotes, RatingValue } from "../types";
 
 const VOTES_STORAGE_KEY = "teacherToolsHub_votes";
 const USER_VOTES_STORAGE_KEY = "teacherToolsHub_userVotes";
 
 export function useToolVotes() {
   const [votes, setVotes] = useState<Record<string, ToolVotes>>({});
-  const [userVotes, setUserVotes] = useState<Record<string, VoteType>>({});
+  const [userVotes, setUserVotes] = useState<Record<string, RatingValue>>({});
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Load votes from localStorage on mount
@@ -38,52 +38,54 @@ export function useToolVotes() {
   }, [votes, userVotes, isLoaded]);
 
   const getVotes = (toolId: string): ToolVotes => {
-    return votes[toolId] || { likes: 0, dislikes: 0 };
+    return votes[toolId] || { totalStars: 0, ratingCount: 0 };
   };
 
-  const getUserVote = (toolId: string): VoteType => {
+  const getUserVote = (toolId: string): RatingValue => {
     return userVotes[toolId] || null;
   };
 
-  const vote = (toolId: string, voteType: VoteType) => {
-    const currentVote = userVotes[toolId] || null;
-    const currentVotes = votes[toolId] || { likes: 0, dislikes: 0 };
+  const getAverageRating = (toolId: string): number => {
+    const toolVotes = getVotes(toolId);
+    if (toolVotes.ratingCount === 0) return 0;
+    return toolVotes.totalStars / toolVotes.ratingCount;
+  };
+
+  const rate = (toolId: string, rating: RatingValue) => {
+    const currentRating = userVotes[toolId] || null;
+    const currentVotes = votes[toolId] || { totalStars: 0, ratingCount: 0 };
 
     let newVotes = { ...currentVotes };
-    let newUserVote: VoteType = voteType;
+    let newUserRating: RatingValue = rating;
 
-    // If clicking the same vote, remove it
-    if (currentVote === voteType) {
-      if (voteType === "like") {
-        newVotes.likes = Math.max(0, newVotes.likes - 1);
-      } else if (voteType === "dislike") {
-        newVotes.dislikes = Math.max(0, newVotes.dislikes - 1);
-      }
-      newUserVote = null;
+    // If clicking the same rating, remove it
+    if (currentRating === rating) {
+      newVotes.totalStars = Math.max(0, newVotes.totalStars - rating);
+      newVotes.ratingCount = Math.max(0, newVotes.ratingCount - 1);
+      newUserRating = null;
     } else {
-      // Remove previous vote if exists
-      if (currentVote === "like") {
-        newVotes.likes = Math.max(0, newVotes.likes - 1);
-      } else if (currentVote === "dislike") {
-        newVotes.dislikes = Math.max(0, newVotes.dislikes - 1);
+      // Remove previous rating if exists
+      if (currentRating !== null) {
+        newVotes.totalStars = Math.max(0, newVotes.totalStars - currentRating);
+        newVotes.ratingCount = Math.max(0, newVotes.ratingCount - 1);
       }
 
-      // Add new vote
-      if (voteType === "like") {
-        newVotes.likes += 1;
-      } else if (voteType === "dislike") {
-        newVotes.dislikes += 1;
+      // Add new rating
+      if (rating !== null) {
+        newVotes.totalStars += rating;
+        newVotes.ratingCount += 1;
       }
     }
 
     setVotes((prev) => ({ ...prev, [toolId]: newVotes }));
-    setUserVotes((prev) => ({ ...prev, [toolId]: newUserVote }));
+    setUserVotes((prev) => ({ ...prev, [toolId]: newUserRating }));
   };
 
   return {
     getVotes,
     getUserVote,
-    vote,
+    getAverageRating,
+    rate,
     isLoaded,
   };
 }

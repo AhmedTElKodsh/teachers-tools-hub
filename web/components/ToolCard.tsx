@@ -11,10 +11,11 @@ interface ToolCardProps {
 
 const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
   const { t, isRTL, language } = useLanguage();
-  const { getVotes, getUserVote, vote } = useToolVotes();
+  const { getUserVote, getAverageRating, rate, getVotes } = useToolVotes();
 
+  const userRating = getUserVote(tool.id);
+  const averageRating = getAverageRating(tool.id);
   const votes = getVotes(tool.id);
-  const userVote = getUserVote(tool.id);
 
   // Get the appropriate text based on language
   const description =
@@ -34,31 +35,60 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
       ? t[tool.categories[0] as keyof typeof t]
       : tool.categories[0];
 
-  const handleVote = (voteType: "like" | "dislike") => {
-    vote(tool.id, voteType);
+  const handleRate = (rating: 1 | 2 | 3 | 4 | 5) => {
+    rate(tool.id, rating);
+  };
+
+  const renderStars = () => {
+    return (
+      <div className="flex items-center gap-1">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <button
+            key={star}
+            onClick={() => handleRate(star as 1 | 2 | 3 | 4 | 5)}
+            className="transition-transform hover:scale-110 focus:outline-none"
+            title={`Rate ${star} star${star > 1 ? "s" : ""}`}
+          >
+            <svg
+              className={`w-5 h-5 transition-colors ${
+                userRating && star <= userRating
+                  ? "text-amber-400 fill-amber-400"
+                  : star <= Math.round(averageRating)
+                    ? "text-amber-300 fill-amber-300"
+                    : "text-slate-300 dark:text-slate-600 fill-slate-300 dark:fill-slate-600"
+              }`}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </button>
+        ))}
+      </div>
+    );
   };
 
   return (
-    <div className="bg-gradient-to-br from-white to-slate-50 dark:bg-slate-800 rounded-xl shadow-sm dark:shadow-xl border border-slate-200 dark:border-white p-4 md:p-6 flex flex-col h-full hover-scale animate-fade-in relative overflow-hidden group">
+    <div className="tool-card rounded-xl p-4 md:p-6 flex flex-col h-full hover-scale animate-fade-in relative overflow-hidden group">
       {/* Gradient overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 dark:bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none"></div>
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none bg-gradient-to-br from-blue-500/5 to-purple-500/5 dark:from-blue-400/10 dark:to-purple-400/10"></div>
 
       <div className="flex-1 relative z-10">
         {/* Title and Category - Stacked Vertically */}
         <div className={`mb-4 ${isRTL ? "text-right" : ""}`}>
           <h3
-            className={`text-lg md:text-xl font-bold text-slate-900 dark:text-white mb-2 ${isRTL ? "text-left" : ""}`}
+            className={`text-lg md:text-xl font-bold text-foreground dark:text-foreground mb-2 ${isRTL ? "text-left" : ""}`}
             dir="ltr"
           >
             {tool.name}
           </h3>
-          <span className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+          <span className="category-badge inline-block bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
             {categoryName}
           </span>
         </div>
 
         <p
-          className={`text-slate-600 dark:text-white text-sm mb-4 line-clamp-3 ${isRTL ? "text-right font-cairo" : ""}`}
+          className={`text-foreground dark:text-foreground text-sm mb-4 line-clamp-3 ${isRTL ? "text-right font-cairo" : ""}`}
           dir={isRTL ? "rtl" : "ltr"}
         >
           {description}
@@ -84,10 +114,10 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
               </svg>
             </div>
             <p
-              className={`text-xs text-slate-700 dark:text-white font-medium ${isRTL ? "text-right font-cairo" : ""}`}
+              className={`text-xs text-foreground dark:text-foreground font-medium ${isRTL ? "text-right font-cairo" : ""}`}
               dir={isRTL ? "rtl" : "ltr"}
             >
-              <span className="text-slate-500 dark:text-slate-300">
+              <span className="text-foreground dark:text-foreground">
                 {t.free}:
               </span>{" "}
               {freeTier}
@@ -113,7 +143,7 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
                 </svg>
               </div>
               <p
-                className={`text-xs text-slate-500 dark:text-slate-300 italic ${isRTL ? "text-right font-cairo" : ""}`}
+                className={`text-xs text-foreground dark:text-foreground italic ${isRTL ? "text-right font-cairo" : ""}`}
                 dir={isRTL ? "rtl" : "ltr"}
               >
                 {limitations}
@@ -122,39 +152,15 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
           )}
         </div>
 
-        {/* Like/Dislike Buttons */}
+        {/* Star Rating */}
         <div
           className={`flex items-center gap-3 mb-4 ${isRTL ? "flex-row-reverse" : ""}`}
         >
-          <button
-            onClick={() => handleVote("like")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-              userVote === "like"
-                ? "bg-emerald-500 text-white shadow-md"
-                : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-white hover:bg-emerald-100 dark:hover:bg-emerald-900/30 border border-slate-200 dark:border-slate-600"
-            }`}
-            title={t.like}
-          >
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-            </svg>
-            <span>{votes.likes}</span>
-          </button>
-
-          <button
-            onClick={() => handleVote("dislike")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-              userVote === "dislike"
-                ? "bg-red-500 text-white shadow-md"
-                : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-white hover:bg-red-100 dark:hover:bg-red-900/30 border border-slate-200 dark:border-slate-600"
-            }`}
-            title={t.dislike}
-          >
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z" />
-            </svg>
-            <span>{votes.dislikes}</span>
-          </button>
+          {renderStars()}
+          <div className="flex items-center gap-1 text-xs text-foreground dark:text-foreground">
+            <span className="font-semibold">{averageRating.toFixed(1)}</span>
+            <span>({votes.ratingCount})</span>
+          </div>
         </div>
       </div>
 
@@ -162,7 +168,7 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
         href={tool.url}
         target="_blank"
         rel="noopener noreferrer"
-        className={`relative z-10 block w-full text-center bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-700 dark:to-slate-600 text-white py-2.5 rounded-lg font-medium hover:from-slate-800 hover:to-slate-700 dark:hover:from-slate-600 dark:hover:to-slate-500 transition-all shadow-sm hover:shadow-md mt-auto border border-slate-700 dark:border-slate-500 ${isRTL ? "font-cairo" : ""}`}
+        className={`relative z-10 block w-full text-center bg-gradient-to-r from-slate-900 to-slate-800 dark:from-blue-600 dark:to-purple-600 text-white py-2.5 rounded-lg font-medium hover:from-slate-800 hover:to-slate-700 dark:hover:from-blue-500 dark:hover:to-purple-500 transition-all shadow-sm hover:shadow-md mt-auto border border-slate-700 dark:border-blue-500 ${isRTL ? "font-cairo" : ""}`}
       >
         {t.viewTool}
       </a>

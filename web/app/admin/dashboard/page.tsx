@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Tool, Suggestion } from '@/lib/data';
+import ThemeToggle from '@/components/ThemeToggle';
+import LanguageToggle from '@/components/LanguageToggle';
 
 interface Category {
   id: string;
@@ -186,28 +189,40 @@ export default function AdminDashboard() {
   if (loading) return <div className="p-8">Loading...</div>;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 p-8">
+    <div className="min-h-screen bg-background p-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold dark:text-white">Admin Dashboard</h1>
-          <button onClick={handleLogout} className="text-red-600 hover:text-red-800">Logout</button>
+        <div className="flex justify-between items-center mb-8 bg-surface p-6 rounded-2xl border border-border">
+          <div className="flex items-center gap-6">
+            <Link href="/" className="flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors font-semibold mr-4">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Home
+            </Link>
+            <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
+          </div>
+          <div className="flex items-center gap-6">
+            <ThemeToggle />
+            <LanguageToggle />
+            <button onClick={handleLogout} className="text-red-600 hover:text-red-800 font-semibold">Logout</button>
+          </div>
         </div>
 
-        <div className="flex gap-4 mb-6 border-b border-slate-200 dark:border-slate-700">
+        <div className="flex gap-4 mb-6 border-b border-border">
           <button 
-            className={`pb-2 px-1 ${activeTab === 'suggestions' ? 'border-b-2 border-blue-600 text-blue-600 font-bold' : 'text-slate-500'}`}
+            className={`pb-2 px-1 transition-all ${activeTab === 'suggestions' ? 'border-b-2 border-primary-from text-primary-from font-bold' : 'text-foreground/60'}`}
             onClick={() => setActiveTab('suggestions')}
           >
             Suggestions ({suggestions.filter(s => s.status === 'pending').length})
           </button>
           <button 
-            className={`pb-2 px-1 ${activeTab === 'tools' ? 'border-b-2 border-blue-600 text-blue-600 font-bold' : 'text-slate-500'}`}
+            className={`pb-2 px-1 transition-all ${activeTab === 'tools' ? 'border-b-2 border-primary-from text-primary-from font-bold' : 'text-foreground/60'}`}
             onClick={() => setActiveTab('tools')}
           >
             Manage Tools ({tools.length})
           </button>
           <button 
-            className={`pb-2 px-1 ${activeTab === 'categories' ? 'border-b-2 border-blue-600 text-blue-600 font-bold' : 'text-slate-500'}`}
+            className={`pb-2 px-1 transition-all ${activeTab === 'categories' ? 'border-b-2 border-primary-from text-primary-from font-bold' : 'text-foreground/60'}`}
             onClick={() => setActiveTab('categories')}
           >
             Manage Categories
@@ -216,42 +231,45 @@ export default function AdminDashboard() {
 
         {activeTab === 'suggestions' && (
           <div className="space-y-4">
-            {suggestions.filter(s => s.status === 'pending').length === 0 && <p>No pending suggestions.</p>}
-            {suggestions.filter(s => s.status === 'pending').map(s => (
-              <div key={s.id} className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow border border-slate-200 dark:border-slate-700">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="text-xl font-bold dark:text-white">{s.toolName}</h3>
-                    <a href={s.toolUrl} target="_blank" className="text-blue-500 underline text-sm">{s.toolUrl}</a>
-                    <div className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-                      <p><strong>Category:</strong> {s.category}</p>
-                      <p><strong>Pricing:</strong> {s.pricingModel} (Free Tier: {s.hasFreeTier})</p>
-                      <p><strong>Description:</strong> {s.description}</p>
-                      {s.additionalInfo && <p><strong>Info:</strong> {s.additionalInfo}</p>}
-                      {s.email && <p><strong>Submitter:</strong> {s.email}</p>}
+            {suggestions.filter(s => s.status === 'pending').length === 0 ? (
+              <p className="text-foreground/60 text-center py-8">No pending suggestions.</p>
+            ) : (
+              suggestions.filter(s => s.status === 'pending').map(s => (
+                <div key={s.id} className="bg-surface p-6 rounded-2xl shadow-sm border border-border">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground">{s.toolName}</h3>
+                      <a href={s.toolUrl} target="_blank" className="text-blue-500 hover:text-blue-600 underline text-sm">{s.toolUrl}</a>
+                      <div className="mt-2 text-sm text-foreground/80">
+                        <p><strong className="text-foreground">Category:</strong> {s.category}</p>
+                        <p><strong className="text-foreground">Pricing:</strong> {s.pricingModel} (Free Tier: {s.hasFreeTier})</p>
+                        <p><strong className="text-foreground">Description:</strong> {s.description}</p>
+                        {s.additionalInfo && <p><strong className="text-foreground">Info:</strong> {s.additionalInfo}</p>}
+                        {s.email && <p><strong className="text-foreground">Submitter:</strong> {s.email}</p>}
+                      </div>
+                    </div>
+                    <div className="flex gap-2">
+                      <button onClick={() => handleApproveSetup(s)} className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition-colors">Approve</button>
+                      <button onClick={() => handleReject(s.id)} className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition-colors">Reject</button>
                     </div>
                   </div>
-                  <div className="flex gap-2">
-                    <button onClick={() => handleApproveSetup(s)} className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">Approve</button>
-                    <button onClick={() => handleReject(s.id)} className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Reject</button>
-                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         )}
 
         {activeTab === 'tools' && (
           <div>
-            <div className="mb-4">
-               <button onClick={handleCreateTool} className="bg-blue-600 text-white px-4 py-2 rounded">Add New Tool</button>
+            <div className="mb-6 flex justify-between items-center">
+               <button onClick={handleCreateTool} className="bg-gradient-to-r from-blue-600 to-primary-to text-white px-6 py-2.5 rounded-xl font-bold shadow-md hover:shadow-lg transition-all">Add New Tool</button>
             </div>
             <div className="grid gap-4">
               {tools.map(tool => (
-                <div key={tool.id} className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow flex justify-between items-center">
+                <div key={tool.id} className="bg-surface p-5 rounded-2xl shadow-sm border border-border flex justify-between items-center hover:shadow-md transition-shadow">
                   <div>
-                    <h3 className="font-bold dark:text-white">{tool.name}</h3>
-                    <p className="text-sm text-slate-500">{tool.categories.join(', ')}</p>
+                    <h3 className="font-bold text-foreground">{tool.name}</h3>
+                    <p className="text-sm text-foreground/60">{tool.categories.join(', ')}</p>
                   </div>
                   <div className="flex gap-2">
                     <button onClick={() => handleEditTool(tool)} className="text-blue-600 hover:underline">Edit</button>
@@ -266,36 +284,36 @@ export default function AdminDashboard() {
         {activeTab === 'categories' && (
             <div className="space-y-6">
                {/* Add New */}
-               <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow border border-slate-200 dark:border-slate-700">
-                  <h3 className="font-bold mb-4 dark:text-white text-lg">Add New Category</h3>
+               <div className="bg-surface p-6 rounded-2xl shadow-sm border border-border">
+                  <h3 className="font-bold mb-4 text-foreground text-lg">Add New Category</h3>
                   <form onSubmit={handleAddCategory} className="flex gap-4">
-                     <input name="name" placeholder="Category Name (English)" className="border p-2 rounded flex-1 dark:bg-slate-700 dark:text-white dark:border-slate-600" required />
-                     <input name="name_ar" placeholder="اسم التصنيف (عربي)" className="border p-2 rounded flex-1 dark:bg-slate-700 dark:text-white dark:border-slate-600 font-cairo" dir="rtl" required />
-                     <button type="submit" className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 font-medium">Add Category</button>
+                     <input name="name" placeholder="Category Name (English)" className="border border-border p-3 rounded-xl flex-1 bg-background text-foreground focus:ring-2 focus:ring-blue-500 outline-none" required />
+                     <input name="name_ar" placeholder="اسم التصنيف (عربي)" className="border border-border p-3 rounded-xl flex-1 bg-background text-foreground font-cairo focus:ring-2 focus:ring-blue-500 outline-none" dir="rtl" required />
+                     <button type="submit" className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-8 py-3 rounded-xl hover:shadow-lg transition-all font-bold">Add Category</button>
                   </form>
                </div>
                
                {/* List */}
                <div className="space-y-3">
                  {categories.map((cat, index) => (
-                    <div key={cat.id} className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow border border-slate-200 dark:border-slate-700 flex items-center gap-4">
+                    <div key={cat.id} className="bg-surface p-5 rounded-2xl shadow-sm border border-border flex items-center gap-4 hover:shadow-md transition-shadow">
                         <div className="flex flex-col gap-1">
-                            <button disabled={index === 0} onClick={() => handleMoveCategory(cat.id, index - 1)} className="text-slate-400 hover:text-blue-600 disabled:opacity-30 p-1 bg-slate-100 dark:bg-slate-700 rounded">▲</button>
-                            <button disabled={index === categories.length - 1} onClick={() => handleMoveCategory(cat.id, index + 1)} className="text-slate-400 hover:text-blue-600 disabled:opacity-30 p-1 bg-slate-100 dark:bg-slate-700 rounded">▼</button>
+                            <button disabled={index === 0} onClick={() => handleMoveCategory(cat.id, index - 1)} className="text-foreground/40 hover:text-blue-600 disabled:opacity-30 p-1.5 bg-background border border-border rounded-lg transition-colors">▲</button>
+                            <button disabled={index === categories.length - 1} onClick={() => handleMoveCategory(cat.id, index + 1)} className="text-foreground/40 hover:text-blue-600 disabled:opacity-30 p-1.5 bg-background border border-border rounded-lg transition-colors">▼</button>
                         </div>
                         <div className="flex-1 grid grid-cols-2 gap-4">
                             <div className="flex flex-col">
-                                <label className="text-xs text-slate-500 mb-1">English Name</label>
+                                <label className="text-xs text-foreground/50 mb-1 font-semibold uppercase tracking-wider">English Name</label>
                                 <input 
-                                    className="border p-2 rounded dark:bg-slate-700 dark:text-white dark:border-slate-600" 
+                                    className="border border-border p-2.5 rounded-xl bg-background text-foreground focus:ring-2 focus:ring-blue-500 outline-none transition-all" 
                                     defaultValue={cat.name} 
                                     onBlur={(e) => { if(e.target.value !== cat.name) handleUpdateCategory(cat.id, { name: e.target.value }) }}
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label className="text-xs text-slate-500 mb-1 text-right">Arabic Name</label>
+                                <label className="text-xs text-foreground/50 mb-1 text-right font-semibold uppercase tracking-wider">Arabic Name</label>
                                 <input 
-                                    className="border p-2 rounded dark:bg-slate-700 dark:text-white dark:border-slate-600 font-cairo" 
+                                    className="border border-border p-2.5 rounded-xl bg-background text-foreground font-cairo focus:ring-2 focus:ring-blue-500 outline-none transition-all" 
                                     dir="rtl"
                                     defaultValue={cat.name_ar} 
                                     onBlur={(e) => { if(e.target.value !== cat.name_ar) handleUpdateCategory(cat.id, { name_ar: e.target.value }) }}
@@ -312,62 +330,62 @@ export default function AdminDashboard() {
         )}
 
         {isModalOpen && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              <h2 className="text-2xl font-bold mb-4 dark:text-white">{editingTool?.id ? 'Edit Tool' : 'New Tool'}</h2>
-              <form onSubmit={handleSaveTool} className="space-y-4">
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+            <div className="bg-background p-8 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-border shadow-2xl">
+              <h2 className="text-2xl font-bold mb-6 text-foreground">{editingTool?.id ? 'Edit Tool' : 'New Tool'}</h2>
+              <form onSubmit={handleSaveTool} className="space-y-5">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium">Name</label>
-                    <input className="w-full border rounded p-2 dark:bg-slate-700" value={editingTool?.name || ''} onChange={e => setEditingTool({...editingTool, name: e.target.value})} required />
+                    <label className="block text-sm font-semibold text-foreground mb-1.5">Name</label>
+                    <input className="w-full border border-border rounded-xl p-3 bg-surface text-foreground focus:ring-2 focus:ring-blue-500 outline-none transition-all" value={editingTool?.name || ''} onChange={e => setEditingTool({...editingTool, name: e.target.value})} required />
                   </div>
                   <div>
-                     <label className="block text-sm font-medium">URL</label>
-                     <input className="w-full border rounded p-2 dark:bg-slate-700" value={editingTool?.url || ''} onChange={e => setEditingTool({...editingTool, url: e.target.value})} required />
+                     <label className="block text-sm font-semibold text-foreground mb-1.5">URL</label>
+                     <input className="w-full border border-border rounded-xl p-3 bg-surface text-foreground focus:ring-2 focus:ring-blue-500 outline-none transition-all" value={editingTool?.url || ''} onChange={e => setEditingTool({...editingTool, url: e.target.value})} required />
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium">Description (EN)</label>
-                    <textarea className="w-full border rounded p-2 dark:bg-slate-700" rows={3} value={editingTool?.description || ''} onChange={e => setEditingTool({...editingTool, description: e.target.value})} required />
+                    <label className="block text-sm font-semibold text-foreground mb-1.5">Description (EN)</label>
+                    <textarea className="w-full border border-border rounded-xl p-3 bg-surface text-foreground focus:ring-2 focus:ring-blue-500 outline-none transition-all" rows={3} value={editingTool?.description || ''} onChange={e => setEditingTool({...editingTool, description: e.target.value})} required />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium">Description (AR)</label>
-                    <textarea className="w-full border rounded p-2 dark:bg-slate-700 font-cairo" dir="rtl" rows={3} value={editingTool?.description_ar || ''} onChange={e => setEditingTool({...editingTool, description_ar: e.target.value})} />
+                    <label className="block text-sm font-semibold text-foreground mb-1.5">Description (AR)</label>
+                    <textarea className="w-full border border-border rounded-xl p-3 bg-surface text-foreground font-cairo focus:ring-2 focus:ring-blue-500 outline-none transition-all" dir="rtl" rows={3} value={editingTool?.description_ar || ''} onChange={e => setEditingTool({...editingTool, description_ar: e.target.value})} />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                    <div>
-                    <label className="block text-sm font-medium">Free Tier Info (EN)</label>
-                    <input className="w-full border rounded p-2 dark:bg-slate-700" value={editingTool?.freeTier || ''} onChange={e => setEditingTool({...editingTool, freeTier: e.target.value})} required />
+                    <label className="block text-sm font-semibold text-foreground mb-1.5">Free Tier Info (EN)</label>
+                    <input className="w-full border border-border rounded-xl p-3 bg-surface text-foreground focus:ring-2 focus:ring-blue-500 outline-none transition-all" value={editingTool?.freeTier || ''} onChange={e => setEditingTool({...editingTool, freeTier: e.target.value})} required />
                    </div>
                    <div>
-                    <label className="block text-sm font-medium">Free Tier Info (AR)</label>
-                    <input className="w-full border rounded p-2 dark:bg-slate-700 font-cairo" dir="rtl" value={editingTool?.freeTier_ar || ''} onChange={e => setEditingTool({...editingTool, freeTier_ar: e.target.value})} />
+                    <label className="block text-sm font-semibold text-foreground mb-1.5">Free Tier Info (AR)</label>
+                    <input className="w-full border border-border rounded-xl p-3 bg-surface text-foreground font-cairo focus:ring-2 focus:ring-blue-500 outline-none transition-all" dir="rtl" value={editingTool?.freeTier_ar || ''} onChange={e => setEditingTool({...editingTool, freeTier_ar: e.target.value})} />
                    </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                    <div>
-                    <label className="block text-sm font-medium">Category</label>
-                    <select className="w-full border rounded p-2 dark:bg-slate-700" value={editingTool?.categories?.[0] || ''} onChange={e => setEditingTool({...editingTool, categories: [e.target.value]})} required>
+                    <label className="block text-sm font-semibold text-foreground mb-1.5">Category</label>
+                    <select className="w-full border border-border rounded-xl p-3 bg-surface text-foreground focus:ring-2 focus:ring-blue-500 outline-none transition-all appearance-none" value={editingTool?.categories?.[0] || ''} onChange={e => setEditingTool({...editingTool, categories: [e.target.value]})} required>
                         <option value="">Select Category</option>
                         {categories.map(cat => (
-                            <option key={cat.id} value={cat.name}>{cat.name}</option>
+                            <option key={cat.id} value={cat.name} className="dark:bg-[#1a1f35]">{cat.name}</option>
                         ))}
                     </select>
                    </div>
                    <div>
-                    <label className="block text-sm font-medium">Best For</label>
-                    <input className="w-full border rounded p-2 dark:bg-slate-700" value={editingTool?.bestFor || ''} onChange={e => setEditingTool({...editingTool, bestFor: e.target.value})} />
+                    <label className="block text-sm font-semibold text-foreground mb-1.5">Best For</label>
+                    <input className="w-full border border-border rounded-xl p-3 bg-surface text-foreground focus:ring-2 focus:ring-blue-500 outline-none transition-all" value={editingTool?.bestFor || ''} onChange={e => setEditingTool({...editingTool, bestFor: e.target.value})} />
                    </div>
                 </div>
 
-                <div className="flex justify-end gap-2 mt-4">
-                  <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border rounded">Cancel</button>
-                  <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">Save</button>
+                <div className="flex justify-end gap-3 mt-6">
+                  <button type="button" onClick={() => setIsModalOpen(false)} className="px-6 py-2.5 border border-border rounded-xl text-foreground font-semibold hover:bg-surface transition-colors">Cancel</button>
+                  <button type="submit" className="px-8 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-bold hover:shadow-lg transition-all">Save Tool</button>
                 </div>
               </form>
             </div>

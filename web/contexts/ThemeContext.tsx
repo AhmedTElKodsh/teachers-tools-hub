@@ -30,11 +30,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     setTheme(initialTheme);
 
-    // Apply theme class immediately
-    if (initialTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
+    // Apply theme class immediately - Tailwind only uses 'dark' class
+    if (document.documentElement) {
+      if (initialTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     }
   }, []);
 
@@ -45,11 +47,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
 
-    // Apply theme class immediately
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
+    // Apply theme class immediately - Tailwind only uses 'dark' class
+    if (document.documentElement) {
+      if (newTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     }
   };
 

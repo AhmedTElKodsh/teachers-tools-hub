@@ -13,14 +13,12 @@ export interface Tool {
 }
 
 export interface ToolVotes {
-  likes: number;
-  dislikes: number;
+  totalStars: number;
+  ratingCount: number;
 }
 
-export type VoteType = "like" | "dislike" | null;
+export type RatingValue = 1 | 2 | 3 | 4 | 5 | null;
 
-export type SortOption =
-  | "alphabetical"
-  | "mostLiked"
-  | "leastDisliked"
-  | "bestRated";
+export type SortOption = "alphabetical" | "highestRated" | "lowestRated";
+
+export type FilterOption = "all" | "4plus" | "3plus";

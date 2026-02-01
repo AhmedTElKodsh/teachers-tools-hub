@@ -15,27 +15,27 @@ const ThemeToggle: React.FC = () => {
   // Don't render until mounted to prevent hydration issues
   if (!mounted) {
     return (
-      <div className="relative p-3 rounded-xl bg-white dark:bg-slate-800 shadow-lg border-2 border-slate-200 dark:border-slate-600 w-12 h-12" />
+      <div className="relative p-2 rounded-lg bg-white/90 dark:bg-slate-800/90 shadow-sm border border-slate-200 dark:border-slate-600 backdrop-blur-sm" />
     );
   }
 
   return (
     <button
       onClick={toggleTheme}
-      className="relative p-3 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-slate-200 dark:border-slate-600 group"
+      className="relative p-2 rounded-lg bg-white/90 dark:bg-slate-800/90 hover:bg-slate-50 dark:hover:bg-slate-700/90 transition-all duration-300 shadow-sm hover:shadow-md border border-slate-200 dark:border-slate-600 group backdrop-blur-sm"
       aria-label={
         theme === "light" ? "Switch to dark mode" : "Switch to light mode"
       }
       title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
     >
-      <div className="relative w-6 h-6">
+      <div className="relative w-5 h-5">
         {/* Sun Icon - Shows in dark mode (click to go to light) */}
         <svg
-          className={`absolute inset-0 w-6 h-6 text-amber-500 transition-all duration-500 ${
+          className={`absolute inset-0 w-5 h-5 text-amber-500 dark:text-amber-400 transition-all duration-500 ${
             theme === "dark"
               ? "opacity-100 rotate-0 scale-100"
               : "opacity-0 -rotate-90 scale-50"
-          } group-hover:rotate-45`}
+          } group-hover:rotate-45 drop-shadow-lg`}
           fill="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -52,11 +52,11 @@ const ThemeToggle: React.FC = () => {
 
         {/* Moon Icon - Shows in light mode (click to go to dark) */}
         <svg
-          className={`absolute inset-0 w-6 h-6 text-indigo-600 transition-all duration-500 ${
+          className={`absolute inset-0 w-5 h-5 text-indigo-600 dark:text-indigo-400 transition-all duration-500 ${
             theme === "light"
               ? "opacity-100 rotate-0 scale-100"
               : "opacity-0 rotate-90 scale-50"
-          } group-hover:-rotate-12`}
+          } group-hover:-rotate-12 drop-shadow-lg`}
           fill="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"

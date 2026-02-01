@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Skill(bmad:bmm:workflows:workflow-init)",
+      "Bash(grep:*)"
+    ]
+  }
+}

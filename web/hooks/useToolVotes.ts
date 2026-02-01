@@ -59,7 +59,7 @@ export function useToolVotes() {
     let newUserRating: RatingValue = rating;
 
     // If clicking the same rating, remove it
-    if (currentRating === rating) {
+    if (currentRating === rating && rating !== null) {
       newVotes.totalStars = Math.max(0, newVotes.totalStars - rating);
       newVotes.ratingCount = Math.max(0, newVotes.ratingCount - 1);
       newUserRating = null;

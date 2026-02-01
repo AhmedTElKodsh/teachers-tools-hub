@@ -15,9 +15,9 @@
 }
 
 .dark {
-  /* Dark Theme - Adjusted to complement new light palette */
+  /* Dark Theme - Enhanced for better contrast and modern look */
   --background: #0f172a;
-  --foreground: #f1f5f9;
+  --foreground: #f8fafc;
   --surface: #1e293b;
   --surface-hover: #334155;
   --border: #334155;
@@ -131,4 +131,68 @@ body {
   transition-property: background-color, border-color, color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 200ms;
+}
+/* Force main element to use CSS variables - Fix for theme switcher */
+main {
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+/* Fix header gradients for dark mode */
+header {
+  background: var(--background) !important;
+}
+
+.dark header {
+  background: linear-gradient(
+    135deg,
+    rgb(15 23 42) 0%,
+    rgb(30 41 59) 25%,
+    rgb(51 65 85) 50%,
+    rgb(30 41 59) 75%,
+    rgb(15 23 42) 100%
+  ) !important;
+}
+
+:root header {
+  background: linear-gradient(
+    to bottom right,
+    rgb(239 246 255),
+    rgb(250 245 255),
+    rgb(253 242 248)
+  ) !important;
+}
+
+/* Enhanced dark mode card styling */
+.dark .tool-card {
+  background: linear-gradient(
+    135deg,
+    rgb(30 41 59) 0%,
+    rgb(51 65 85) 100%
+  ) !important;
+  border-color: rgb(71 85 105) !important;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+}
+
+.dark .tool-card:hover {
+  background: linear-gradient(
+    135deg,
+    rgb(51 65 85) 0%,
+    rgb(71 85 105) 100%
+  ) !important;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.4),
+    0 4px 6px -2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Dark mode sidebar improvements */
+.dark .sidebar-card {
+  background: linear-gradient(
+    135deg,
+    rgb(30 41 59) 0%,
+    rgb(51 65 85) 100%
+  ) !important;
+  border-color: rgb(71 85 105) !important;
 }

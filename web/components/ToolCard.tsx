@@ -39,26 +39,26 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-4 md:p-6 flex flex-col h-full hover-scale animate-fade-in relative overflow-hidden group">
+    <div className="bg-gradient-to-br from-white to-slate-50 dark:bg-slate-800 rounded-xl shadow-sm dark:shadow-xl border border-slate-200 dark:border-white p-4 md:p-6 flex flex-col h-full hover-scale animate-fade-in relative overflow-hidden group">
       {/* Gradient overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 dark:bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none"></div>
 
       <div className="flex-1 relative z-10">
         {/* Title and Category - Stacked Vertically */}
         <div className={`mb-4 ${isRTL ? "text-right" : ""}`}>
           <h3
-            className={`text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100 mb-2 ${isRTL ? "text-left" : ""}`}
+            className={`text-lg md:text-xl font-bold text-slate-900 dark:text-white mb-2 ${isRTL ? "text-left" : ""}`}
             dir="ltr"
           >
             {tool.name}
           </h3>
-          <span className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+          <span className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
             {categoryName}
           </span>
         </div>
 
         <p
-          className={`text-slate-600 dark:text-slate-300 text-sm mb-4 line-clamp-3 ${isRTL ? "text-right font-cairo" : ""}`}
+          className={`text-slate-600 dark:text-white text-sm mb-4 line-clamp-3 ${isRTL ? "text-right font-cairo" : ""}`}
           dir={isRTL ? "rtl" : "ltr"}
         >
           {description}
@@ -84,10 +84,10 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
               </svg>
             </div>
             <p
-              className={`text-xs text-slate-700 dark:text-slate-300 font-medium ${isRTL ? "text-right font-cairo" : ""}`}
+              className={`text-xs text-slate-700 dark:text-white font-medium ${isRTL ? "text-right font-cairo" : ""}`}
               dir={isRTL ? "rtl" : "ltr"}
             >
-              <span className="text-slate-500 dark:text-slate-400">
+              <span className="text-slate-500 dark:text-slate-300">
                 {t.free}:
               </span>{" "}
               {freeTier}
@@ -113,7 +113,7 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
                 </svg>
               </div>
               <p
-                className={`text-xs text-slate-500 dark:text-slate-400 italic ${isRTL ? "text-right font-cairo" : ""}`}
+                className={`text-xs text-slate-500 dark:text-slate-300 italic ${isRTL ? "text-right font-cairo" : ""}`}
                 dir={isRTL ? "rtl" : "ltr"}
               >
                 {limitations}
@@ -131,7 +131,7 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               userVote === "like"
                 ? "bg-emerald-500 text-white shadow-md"
-                : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/30"
+                : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-white hover:bg-emerald-100 dark:hover:bg-emerald-900/30 border border-slate-200 dark:border-slate-600"
             }`}
             title={t.like}
           >
@@ -146,7 +146,7 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               userVote === "dislike"
                 ? "bg-red-500 text-white shadow-md"
-                : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-red-100 dark:hover:bg-red-900/30"
+                : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-white hover:bg-red-100 dark:hover:bg-red-900/30 border border-slate-200 dark:border-slate-600"
             }`}
             title={t.dislike}
           >
@@ -162,7 +162,7 @@ const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
         href={tool.url}
         target="_blank"
         rel="noopener noreferrer"
-        className={`relative z-10 block w-full text-center bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-700 dark:to-slate-600 text-white py-2.5 rounded-lg font-medium hover:from-slate-800 hover:to-slate-700 dark:hover:from-slate-600 dark:hover:to-slate-500 transition-all shadow-sm hover:shadow-md mt-auto ${isRTL ? "font-cairo" : ""}`}
+        className={`relative z-10 block w-full text-center bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-700 dark:to-slate-600 text-white py-2.5 rounded-lg font-medium hover:from-slate-800 hover:to-slate-700 dark:hover:from-slate-600 dark:hover:to-slate-500 transition-all shadow-sm hover:shadow-md mt-auto border border-slate-700 dark:border-slate-500 ${isRTL ? "font-cairo" : ""}`}
       >
         {t.viewTool}
       </a>

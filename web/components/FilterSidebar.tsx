@@ -57,18 +57,18 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
       />
 
       <div className="w-full md:w-64 shrink-0">
-        <div className="bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-4 md:p-6 md:sticky md:top-8 animate-fade-in">
+        <div className="sidebar-card bg-gradient-to-br from-white to-slate-50 dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-4 md:p-6 md:sticky md:top-8 animate-fade-in">
           {/* Sort Dropdown */}
           <div className="mb-6">
             <label
-              className={`block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 ${isRTL ? "font-cairo text-right" : ""}`}
+              className={`block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2 ${isRTL ? "font-cairo text-right" : ""}`}
             >
               {t.sortBy}
             </label>
             <select
               value={sortOption}
               onChange={(e) => onSortChange(e.target.value as SortOption)}
-              className={`w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${isRTL ? "font-cairo text-right" : ""}`}
+              className={`w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700/80 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all shadow-sm ${isRTL ? "font-cairo text-right" : ""}`}
             >
               {sortOptions.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -89,7 +89,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
               className={`w-full px-3 md:px-4 py-2 md:py-2.5 rounded-lg text-sm font-medium transition-all ${
                 selectedCategory === null
                   ? "bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 text-white shadow-md hover:shadow-lg transform hover:scale-[1.02]"
-                  : "text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-slate-50 hover:to-slate-100 dark:hover:from-slate-700 dark:hover:to-slate-600 hover:text-slate-900 dark:hover:text-slate-100"
+                  : "text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-600 dark:hover:border-slate-400"
               } ${isRTL ? "text-right font-cairo" : "text-left"}`}
             >
               {t.allTools}
@@ -101,7 +101,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 className={`w-full px-3 md:px-4 py-2 md:py-2.5 rounded-lg text-sm font-medium transition-all ${
                   selectedCategory === category
                     ? "bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 text-white shadow-md hover:shadow-lg transform hover:scale-[1.02]"
-                    : "text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-slate-50 hover:to-slate-100 dark:hover:from-slate-700 dark:hover:to-slate-600 hover:text-slate-900 dark:hover:text-slate-100"
+                    : "text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-600 dark:hover:border-slate-400"
                 } ${isRTL ? "text-right font-cairo" : "text-left"}`}
               >
                 {getCategoryTranslation(category)}
@@ -112,14 +112,14 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
           <div
             className={`mt-8 md:mt-10 pt-6 border-t border-slate-100 dark:border-slate-700 space-y-4 ${isRTL ? "font-cairo" : ""}`}
           >
-            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-lg p-4 border border-emerald-200 dark:border-emerald-800 shadow-sm">
+            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/30 dark:to-teal-900/30 rounded-lg p-4 border border-emerald-200 dark:border-emerald-700/50 shadow-sm">
               <h4
                 className={`text-xs font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider mb-2 ${isRTL ? "text-right" : ""}`}
               >
                 {t.proTip}
               </h4>
               <p
-                className={`text-xs text-emerald-700 dark:text-emerald-400 leading-relaxed ${isRTL ? "text-right" : ""}`}
+                className={`text-xs text-emerald-700 dark:text-emerald-300 leading-relaxed ${isRTL ? "text-right" : ""}`}
               >
                 {t.proTipText}
               </p>
@@ -127,7 +127,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
             <button
               onClick={() => setIsSuggestModalOpen(true)}
-              className="w-full bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-700 dark:to-slate-600 text-white px-4 py-3 rounded-lg text-sm font-semibold hover:from-slate-800 hover:to-slate-700 dark:hover:from-slate-600 dark:hover:to-slate-500 transition-all shadow-sm hover:shadow-md transform hover:scale-[1.02]"
+              className="w-full bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-600 dark:to-slate-700 text-white px-4 py-3 rounded-lg text-sm font-semibold hover:from-slate-800 hover:to-slate-700 dark:hover:from-slate-500 dark:hover:to-slate-600 transition-all shadow-sm hover:shadow-md transform hover:scale-[1.02]"
             >
               {t.suggestTool}
             </button>

@@ -15,18 +15,22 @@ const ThemeContext = createContext<ThemeContextType>({
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme | null>(null);
+  const [theme, setTheme] = useState<Theme>("light"); // Default to light to prevent hydration mismatch
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+
+    // Only run on client side
     const stored = localStorage.getItem("theme") as Theme | null;
     const prefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)",
     ).matches;
     const initialTheme = stored || (prefersDark ? "dark" : "light");
+
     setTheme(initialTheme);
 
+    // Apply theme class immediately
     if (initialTheme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
@@ -35,12 +39,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const toggleTheme = () => {
-    if (!theme) return;
+    if (!mounted) return; // Prevent execution before hydration
 
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
 
+    // Apply theme class immediately
     if (newTheme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
@@ -48,9 +53,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // Prevent flash of unstyled content
-  if (!mounted || !theme) {
-    return <>{children}</>;
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return <div suppressHydrationWarning>{children}</div>;
   }
 
   return (

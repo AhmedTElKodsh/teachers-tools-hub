@@ -2,58 +2,59 @@
 
 /* ============================================
    CSS VARIABLES - COLOR SYSTEM
+   Educational & Warm Academic Palette
    ============================================ */
 
 :root {
-  /* Light Theme - Soft, professional palette */
-  --background: #ffffff;
-  --foreground: #000000;
-  --surface: #f8fafc;
-  --surface-hover: #f1f5f9;
-  --border: #e2e8f0;
-  --border-hover: #cbd5e1;
+  /* Light Theme - Warm Academic Palette */
+  --background: #faf8f5;
+  --foreground: #2d1b0e;
+  --surface: #ffffff;
+  --surface-hover: #f5f1ec;
+  --border: #e7dfd6;
+  --border-hover: #d4c5b5;
 
-  /* Light theme gradients - Softer, less intense */
-  --gradient-start: #eff6ff;
-  --gradient-mid: #faf5ff;
-  --gradient-end: #fdf2f8;
-
-  /* Primary colors - Blue to Purple */
-  --primary-from: #3b82f6;
-  --primary-to: #8b5cf6;
-  --primary-hover-from: #2563eb;
-  --primary-hover-to: #7c3aed;
+  /* Academic color palette */
+  --terracotta: #c96847;
+  --terracotta-light: #e08968;
+  --sage: #7a9d7e;
+  --sage-light: #9bb89e;
+  --navy: #2c4251;
+  --navy-light: #3d5a6b;
+  --cream: #f9f6f1;
+  --warm-gray: #8b7d6b;
 
   /* Accent colors */
-  --accent-emerald: #10b981;
-  --accent-amber: #f59e0b;
-  --accent-rose: #f43f5e;
+  --accent-success: #7a9d7e;
+  --accent-warning: #d4975c;
+  --accent-info: #6b8fa3;
+  --accent-star: #d4975c;
 }
 
 .dark {
-  /* Dark Theme - Deep, rich palette with proper contrast */
-  --background: #0a0f1e;
-  --foreground: #ffffff;
-  --surface: #1a1f35;
-  --surface-hover: #252b45;
-  --border: #2d3548;
-  --border-hover: #3d4560;
+  /* Dark Theme - Refined Night Reading Mode */
+  --background: #1a1410;
+  --foreground: #f5f1ec;
+  --surface: #2d231c;
+  --surface-hover: #3a2d23;
+  --border: #4a3a2e;
+  --border-hover: #5c4a3b;
 
-  /* Dark theme gradients - Subtle, elegant */
-  --gradient-start: #0f1629;
-  --gradient-mid: #1a1f35;
-  --gradient-end: #252b45;
+  /* Dark academic palette */
+  --terracotta: #e08968;
+  --terracotta-light: #f0a080;
+  --sage: #9bb89e;
+  --sage-light: #b5cdb8;
+  --navy: #6b8fa3;
+  --navy-light: #85a5b8;
+  --cream: #2d231c;
+  --warm-gray: #a89885;
 
-  /* Primary colors - Brighter for dark backgrounds */
-  --primary-from: #60a5fa;
-  --primary-to: #a78bfa;
-  --primary-hover-from: #3b82f6;
-  --primary-hover-to: #8b5cf6;
-
-  /* Accent colors - Adjusted for dark mode */
-  --accent-emerald: #34d399;
-  --accent-amber: #fbbf24;
-  --accent-rose: #fb7185;
+  /* Dark accent colors */
+  --accent-success: #9bb89e;
+  --accent-warning: #e0a870;
+  --accent-info: #85a5b8;
+  --accent-star: #e0a870;
 }
 
 @theme {
@@ -63,11 +64,11 @@
   --color-surface-hover: var(--surface-hover);
   --color-border: var(--border);
   --color-border-hover: var(--border-hover);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-heading: 'Crimson Pro', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Configure dark mode for Tailwind v4 */
-  --default-transition-duration: 200ms;
+  --default-transition-duration: 300ms;
   --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -78,10 +79,27 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+    background-color 0.4s ease,
+    color 0.4s ease;
+
+  /* Subtle paper texture */
+  background-image:
+    radial-gradient(circle at 20% 50%, transparent 0%, rgba(0,0,0,0.015) 100%),
+    radial-gradient(circle at 80% 80%, transparent 0%, rgba(0,0,0,0.015) 100%);
+}
+
+.dark body {
+  background-image:
+    radial-gradient(circle at 20% 50%, transparent 0%, rgba(255,255,255,0.02) 100%),
+    radial-gradient(circle at 80% 80%, transparent 0%, rgba(255,255,255,0.02) 100%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* RTL Support */
@@ -97,7 +115,7 @@ body {
 }
 
 /* ============================================
-   ANIMATIONS
+   ANIMATIONS - Dignified & Purposeful
    ============================================ */
 
 @keyframes gradient-shift {
@@ -112,13 +130,13 @@ body {
 
 .animate-gradient {
   background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
+  animation: gradient-shift 12s ease infinite;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -127,45 +145,59 @@ body {
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   opacity: 0;
 }
 
-@keyframes pulse-subtle {
-  0%,
-  100% {
-    opacity: 1;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
   }
   50% {
-    opacity: 0.9;
+    transform: translateY(-4px);
   }
 }
 
-.animate-pulse-subtle {
-  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
 }
 
 /* ============================================
-   HOVER EFFECTS
+   HOVER EFFECTS - Subtle & Refined
    ============================================ */
 
 .hover-scale {
   transition:
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s ease;
 }
 
 .hover-scale:hover {
-  transform: translateY(-6px) scale(1.01);
+  transform: translateY(-4px);
   box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.15),
-    0 10px 10px -5px rgba(0, 0, 0, 0.08);
+    0 12px 24px -8px rgba(201, 104, 71, 0.15),
+    0 4px 8px -2px rgba(44, 66, 81, 0.08);
 }
 
 .dark .hover-scale:hover {
   box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.5),
-    0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    0 12px 24px -8px rgba(224, 137, 104, 0.2),
+    0 4px 8px -2px rgba(0, 0, 0, 0.4);
 }
 
 /* ============================================
@@ -182,199 +214,349 @@ main {
 }
 
 /* ============================================
-   HEADER COMPONENT
+   HEADER COMPONENT - Academic Banner
    ============================================ */
 
-/* Light Theme Header - Soft gradient */
 header {
   background: linear-gradient(
     135deg,
-    var(--gradient-start) 0%,
-    var(--gradient-mid) 50%,
-    var(--gradient-end) 100%
+    var(--cream) 0%,
+    rgba(201, 104, 71, 0.08) 40%,
+    rgba(122, 157, 126, 0.08) 60%,
+    var(--surface) 100%
   );
-  border-bottom: 1px solid var(--border);
+  border-bottom: 3px solid var(--terracotta);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Dark Theme Header - Deep gradient with subtle glow */
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 104, 71, 0.05) 50%,
+    transparent 100%
+  );
+  animation: shimmer 8s ease-in-out infinite;
+}
+
 .dark header {
   background: linear-gradient(
     135deg,
-    #0a0f1e 0%,
-    #1a1f35 25%,
-    #252b45 50%,
-    #1a1f35 75%,
-    #0a0f1e 100%
+    var(--surface) 0%,
+    rgba(224, 137, 104, 0.1) 40%,
+    rgba(155, 184, 158, 0.08) 60%,
+    var(--background) 100%
   );
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 4px 20px rgba(96, 165, 250, 0.05);
+  border-bottom: 3px solid var(--terracotta-light);
 }
 
-/* Ensure header text is visible */
-.dark header h1 {
-  /* Gradient text is already visible */
-}
-
-/* Header animated gradient overlay */
-.dark header .animate-gradient {
+.dark header::before {
   background: linear-gradient(
     90deg,
-    rgba(96, 165, 250, 0.05) 0%,
-    rgba(167, 139, 250, 0.05) 50%,
-    rgba(96, 165, 250, 0.05) 100%
+    transparent 0%,
+    rgba(224, 137, 104, 0.08) 50%,
+    transparent 100%
   );
 }
 
 /* ============================================
-   TOOL CARDS COMPONENT
+   TOOL CARDS - Library Card Aesthetic
    ============================================ */
 
-/* Light Theme Cards */
 .tool-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border: 1px solid var(--border);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-left: 5px solid var(--terracotta);
+  box-shadow:
+    2px 2px 8px rgba(45, 27, 14, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--terracotta) 0%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .tool-card:hover {
-  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-  border-color: var(--border-hover);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  transform: translateY(-4px);
+  border-left-color: var(--sage);
+  border-color: var(--terracotta);
+  box-shadow:
+    4px 8px 20px rgba(201, 104, 71, 0.15),
+    2px 2px 8px rgba(122, 157, 126, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
-/* Dark Theme Cards - Rich gradient with glow */
+.tool-card:hover::before {
+  opacity: 1;
+}
+
 .dark .tool-card {
-  background: linear-gradient(135deg, #1a1f35 0%, #252b45 100%);
-  border: 1px solid var(--border);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-left: 5px solid var(--terracotta-light);
   box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(96, 165, 250, 0.03);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    3px 3px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .dark .tool-card:hover {
-  background: linear-gradient(135deg, #252b45 0%, #2d3548 100%);
-  border-color: var(--border-hover);
+  border-left-color: var(--sage-light);
+  border-color: var(--terracotta-light);
   box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.5),
-    0 0 30px rgba(96, 165, 250, 0.08);
-  transform: translateY(-4px);
+    4px 8px 24px rgba(224, 137, 104, 0.2),
+    2px 2px 12px rgba(155, 184, 158, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Card gradient overlay on hover */
 .dark .tool-card .group-hover\:opacity-100 {
   background: linear-gradient(
     135deg,
-    rgba(96, 165, 250, 0.05) 0%,
-    rgba(167, 139, 250, 0.05) 100%
+    rgba(224, 137, 104, 0.05) 0%,
+    rgba(155, 184, 158, 0.05) 100%
   );
 }
 
 /* ============================================
-   SIDEBAR COMPONENT
+   SIDEBAR - Organized Planner Aesthetic
    ============================================ */
 
-/* Light Theme Sidebar */
 .sidebar-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border: 1px solid var(--border);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-top: 4px solid var(--sage);
+  box-shadow:
+    2px 2px 8px rgba(45, 27, 14, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  position: relative;
 }
 
-/* Dark Theme Sidebar - Matching card style */
+.sidebar-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 20px,
+    var(--border) 20px,
+    var(--border) 21px
+  );
+  opacity: 0.3;
+}
+
 .dark .sidebar-card {
-  background: linear-gradient(135deg, #1a1f35 0%, #252b45 100%);
-  border: 1px solid var(--border);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-top: 4px solid var(--sage-light);
   box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(96, 165, 250, 0.03);
+    3px 3px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 /* ============================================
    BUTTONS & INTERACTIVE ELEMENTS
    ============================================ */
 
-/* Primary gradient buttons - Light theme */
 .btn-gradient-primary {
   background: linear-gradient(
-    90deg,
-    var(--primary-from) 0%,
-    var(--primary-to) 100%
+    135deg,
+    var(--terracotta) 0%,
+    var(--terracotta-light) 100%
   );
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow:
+    0 2px 8px rgba(201, 104, 71, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gradient-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.btn-gradient-primary:hover::before {
+  left: 100%;
 }
 
 .btn-gradient-primary:hover {
   background: linear-gradient(
-    90deg,
-    var(--primary-hover-from) 0%,
-    var(--primary-hover-to) 100%
+    135deg,
+    var(--navy) 0%,
+    var(--navy-light) 100%
   );
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  box-shadow:
+    0 4px 16px rgba(44, 66, 81, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
-/* Primary gradient buttons - Dark theme */
 .dark .btn-gradient-primary {
   background: linear-gradient(
-    90deg,
-    var(--primary-from) 0%,
-    var(--primary-to) 100%
+    135deg,
+    var(--terracotta-light) 0%,
+    var(--sage-light) 100%
   );
-  box-shadow: 0 0 20px rgba(96, 165, 250, 0.15);
+  box-shadow:
+    0 2px 12px rgba(224, 137, 104, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .dark .btn-gradient-primary:hover {
   background: linear-gradient(
-    90deg,
-    var(--primary-hover-from) 0%,
-    var(--primary-hover-to) 100%
+    135deg,
+    var(--sage-light) 0%,
+    var(--navy-light) 100%
   );
-  box-shadow: 0 4px 20px rgba(96, 165, 250, 0.3);
+  box-shadow:
+    0 4px 20px rgba(155, 184, 158, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Category badges - Dark theme enhancement */
+.category-badge {
+  background: linear-gradient(
+    135deg,
+    var(--sage) 0%,
+    var(--sage-light) 100%
+  );
+  box-shadow:
+    0 2px 6px rgba(122, 157, 126, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 .dark .category-badge {
   background: linear-gradient(
-    90deg,
-    rgba(96, 165, 250, 0.9) 0%,
-    rgba(167, 139, 250, 0.9) 100%
+    135deg,
+    var(--sage-light) 0%,
+    var(--navy-light) 100%
   );
-  box-shadow: 0 0 15px rgba(96, 165, 250, 0.2);
+  box-shadow:
+    0 2px 8px rgba(155, 184, 158, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 /* ============================================
-   FORM INPUTS
+   FORM INPUTS - Refined Academic Forms
    ============================================ */
 
-/* Search input - Dark theme */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+textarea,
+select {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  color: var(--foreground);
+  transition: all 0.3s ease;
+  font-family: var(--font-sans);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--terracotta);
+  box-shadow:
+    0 0 0 3px rgba(201, 104, 71, 0.1),
+    0 2px 8px rgba(201, 104, 71, 0.15);
+  outline: none;
+}
+
 .dark input[type="text"],
 .dark input[type="email"],
+.dark input[type="url"],
 .dark textarea,
 .dark select {
-  background: rgba(26, 31, 53, 0.8);
+  background: var(--surface);
   border-color: var(--border);
   color: var(--foreground);
-  backdrop-filter: blur(10px);
 }
 
 .dark input[type="text"]:focus,
 .dark input[type="email"]:focus,
+.dark input[type="url"]:focus,
 .dark textarea:focus,
 .dark select:focus {
-  background: rgba(26, 31, 53, 0.95);
-  border-color: var(--primary-from);
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+  border-color: var(--terracotta-light);
+  box-shadow:
+    0 0 0 3px rgba(224, 137, 104, 0.15),
+    0 2px 12px rgba(224, 137, 104, 0.2);
 }
 
 /* ============================================
-   FOOTER
+   FOOTER - Scholarly Closure
    ============================================ */
 
+footer {
+  background: linear-gradient(
+    to top,
+    var(--surface) 0%,
+    rgba(201, 104, 71, 0.05) 100%
+  );
+  border-top: 3px solid var(--sage);
+  position: relative;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--terracotta) 50%,
+    transparent 100%
+  );
+}
+
 .dark footer {
-  background: linear-gradient(135deg, #0a0f1e 0%, #1a1f35 100%);
-  border-top: 1px solid var(--border);
+  background: linear-gradient(
+    to top,
+    var(--surface) 0%,
+    rgba(224, 137, 104, 0.05) 100%
+  );
+  border-top: 3px solid var(--sage-light);
 }
 
 /* ============================================
@@ -421,50 +603,43 @@ header {
 }
 
 /* ============================================
-   SCROLLBAR STYLING
+   SCROLLBAR STYLING - Academic Refinement
    ============================================ */
 
-/* Light theme scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 10px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%);
-  border-radius: 10px;
-  border: 2px solid #f1f5f9;
+  background: linear-gradient(180deg, var(--terracotta) 0%, var(--sage) 100%);
+  border-radius: 6px;
+  border: 2px solid var(--surface);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%);
-}
-
-/* Dark theme scrollbar */
-.dark ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  background: linear-gradient(180deg, var(--navy) 0%, var(--terracotta) 100%);
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #1a2332;
-  border-radius: 10px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #3d4f6b 0%, #2d3b52 100%);
-  border-radius: 10px;
-  border: 2px solid #1a2332;
+  background: linear-gradient(180deg, var(--terracotta-light) 0%, var(--sage-light) 100%);
+  border-radius: 6px;
+  border: 2px solid var(--surface);
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #60a5fa 0%, #a78bfa 100%);
-  box-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
+  background: linear-gradient(180deg, var(--navy-light) 0%, var(--terracotta-light) 100%);
+  box-shadow: 0 0 8px rgba(224, 137, 104, 0.3);
 }
 
 /* ============================================
@@ -484,29 +659,76 @@ header {
 }
 
 /* ============================================
-   UTILITY CLASSES
+   UTILITY CLASSES - Academic Elements
    ============================================ */
 
-/* Glass morphism effect */
 .glass {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(201, 104, 71, 0.1);
 }
 
 .dark .glass {
-  background: rgba(26, 35, 50, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(96, 165, 250, 0.1);
+  background: rgba(45, 35, 28, 0.85);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(224, 137, 104, 0.15);
 }
 
-/* Glow effect for interactive elements */
 .glow-on-hover:hover {
-  box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+  box-shadow:
+    0 0 20px rgba(201, 104, 71, 0.3),
+    0 4px 12px rgba(122, 157, 126, 0.2);
 }
 
 .dark .glow-on-hover:hover {
-  box-shadow: 0 0 30px rgba(96, 165, 250, 0.5);
+  box-shadow:
+    0 0 24px rgba(224, 137, 104, 0.4),
+    0 4px 16px rgba(155, 184, 158, 0.3);
+}
+
+/* Educational accent decorations */
+.corner-fold {
+  position: relative;
+}
+
+.corner-fold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  border-color: transparent var(--sage) transparent transparent;
+  opacity: 0.3;
+}
+
+/* Underline accent for headings */
+.heading-accent {
+  position: relative;
+  display: inline-block;
+}
+
+.heading-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--terracotta) 0%,
+    var(--sage) 100%
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.heading-accent:hover::after {
+  transform: scaleX(1);
 }
 
 /* ============================================

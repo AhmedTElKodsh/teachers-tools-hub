@@ -3,7 +3,16 @@
     "allow": [
       "WebSearch",
       "Skill(bmad:bmm:workflows:workflow-init)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "mcp__supabase__apply_migration",
+      "Bash(npm install:*)",
+      "Bash(npx supabase:*)",
+      "mcp__supabase__list_tables",
+      "mcp__supabase__list_extensions"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "supabase"
+  ]
 }

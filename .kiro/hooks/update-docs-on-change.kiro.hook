@@ -1,0 +1,26 @@
+{
+  "enabled": true,
+  "name": "Update Documentation on Source Changes",
+  "description": "Automatically updates README.md when TypeScript source files, components, or data files are modified to keep documentation in sync with code changes",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "*.ts",
+      "*.tsx",
+      "*.mts",
+      "app/**/*.tsx",
+      "components/**/*.tsx",
+      "contexts/**/*.tsx",
+      "hooks/**/*.ts",
+      "lib/**/*.ts",
+      "types/**/*.ts",
+      "data/**/*.json",
+      "package.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A source file has been modified. Please review the changes and update the README.md file to reflect any new features, components, API changes, or structural modifications. Ensure the documentation accurately describes the current state of the project, including any new dependencies, configuration changes, or usage instructions."
+  }
+}

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import Link from "next/link";
 import toolsData from "../data/tools.json";
 import { Tool, SortOption, FilterOption } from "../types";
 import FilterSidebar from "../components/FilterSidebar";
@@ -9,8 +8,6 @@ import ToolGrid from "../components/ToolGrid";
 import LanguageToggle from "../components/LanguageToggle";
 import ThemeToggle from "../components/ThemeToggle";
 import { useLanguage } from "../contexts/LanguageContext";
-import { useAuth } from "../contexts/AuthContext";
-import AuthModal from "../components/AuthModal";
 
 // Disable static generation for this page
 export const dynamic = "force-dynamic";
@@ -21,10 +18,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>("alphabetical");
   const [filterOption, setFilterOption] = useState<FilterOption>("all");
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  
   const { t, isRTL } = useLanguage();
-  const { user, signOut } = useAuth();
 
   const categories = useMemo(() => {
     const allCategories = tools.flatMap((tool) => tool.categories);
@@ -55,11 +49,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen transition-colors">
-      <AuthModal 
-        isOpen={isAuthModalOpen} 
-        onClose={() => setIsAuthModalOpen(false)} 
-      />
-
       {/* Header */}
       <header className="relative py-8 md:py-12 px-4 md:px-6 overflow-hidden">
         {/* Animated gradient background */}
@@ -68,49 +57,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Top Bar with Toggles */}
           <div
-            className={`flex flex-wrap items-center justify-end gap-3 mb-6 ${isRTL ? "flex-row-reverse" : ""}`}
+            className={`flex items-center justify-end gap-2 mb-6 ${isRTL ? "flex-row-reverse" : ""}`}
           >
-            {/* Navigation Links */}
-            <Link 
-              href="/resources" 
-              className="px-3 py-2 text-sm font-medium bg-white/80 dark:bg-slate-800/80 rounded-lg hover:bg-white dark:hover:bg-slate-700 transition-colors shadow-sm backdrop-blur-sm"
-            >
-              📚 Resources
-            </Link>
-            
-            <Link 
-              href="/upload" 
-              className="px-3 py-2 text-sm font-medium bg-white/80 dark:bg-slate-800/80 rounded-lg hover:bg-white dark:hover:bg-slate-700 transition-colors shadow-sm backdrop-blur-sm"
-            >
-              ☁️ Upload
-            </Link>
-
-            {user ? (
-              <>
-                <Link 
-                  href="/dashboard" 
-                  className="px-3 py-2 text-sm font-medium bg-white/80 dark:bg-slate-800/80 rounded-lg hover:bg-white dark:hover:bg-slate-700 transition-colors shadow-sm backdrop-blur-sm"
-                >
-                  👤 Dashboard
-                </Link>
-                <button
-                  onClick={() => signOut()}
-                  className="px-3 py-2 text-sm font-medium bg-white/80 dark:bg-slate-800/80 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/30 text-red-600 dark:text-red-400 transition-colors shadow-sm backdrop-blur-sm"
-                >
-                  Sign Out
-                </button>
-              </>
-            ) : (
-              <button
-                onClick={() => setIsAuthModalOpen(true)}
-                className="px-3 py-2 text-sm font-medium bg-[#c96847] text-white rounded-lg hover:bg-[#b35939] transition-colors shadow-md backdrop-blur-sm"
-              >
-                Sign In
-              </button>
-            )}
-
-            <div className="w-px h-6 bg-slate-300 dark:bg-slate-600 mx-1"></div>
-
             <a
               href="/admin/dashboard"
               className="p-2 rounded-lg bg-white dark:bg-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-700/80 transition-colors shadow-sm border border-slate-200 dark:border-slate-600 dark:text-white group backdrop-blur-sm"
@@ -137,19 +85,17 @@ export default function Home() {
           {/* Title and Description */}
           <div className="text-center">
             <h1
-              className={`text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-[#c96847] via-[#7a9d7e] to-[#2c4251] dark:from-[#e08968] dark:via-[#9bb89e] dark:to-[#6b8fa3] bg-clip-text text-transparent mb-4 animate-fade-in drop-shadow-sm pencil-underline ${isRTL ? "font-cairo" : ""}`}
-              style={{ fontFamily: 'var(--font-heading)' }}
+              className={`text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent mb-4 animate-fade-in drop-shadow-sm ${isRTL ? "font-cairo" : ""}`}
             >
               {t.title}
             </h1>
             <p
               className={`text-base md:text-lg text-foreground dark:text-foreground max-w-2xl mx-auto mb-2 animate-fade-in ${isRTL ? "font-cairo" : ""}`}
-              style={{ animationDelay: "0.1s", fontFamily: 'var(--font-sans)', lineHeight: '1.7' }}
+              style={{ animationDelay: "0.1s" }}
             >
               {t.subtitle}{" "}
-              <span className="text-transparent bg-gradient-to-r from-[#c96847] to-[#7a9d7e] dark:from-[#e08968] dark:to-[#9bb89e] bg-clip-text font-bold drop-shadow-sm relative inline-block">
-                <span className="relative z-10">{t.hours}</span>
-                <span className="absolute -bottom-1 left-0 w-full h-2 bg-[#ffd966] dark:bg-[#f4d96b] opacity-30 -z-10 rounded"></span>
+              <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text font-bold drop-shadow-sm">
+                {t.hours}
               </span>
               . {t.forClassrooms}
             </p>
@@ -164,24 +110,23 @@ export default function Home() {
                 placeholder={t.searchPlaceholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full px-4 md:px-6 py-3 md:py-4 bg-white/95 dark:bg-slate-800/90 backdrop-blur-md border-2 border-slate-300 dark:border-slate-600 border-b-4 border-b-[#6ba3d4] dark:border-b-[#7fb5e0] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c96847] dark:focus:ring-[#e08968] focus:border-[#c96847] dark:focus:border-[#e08968] focus:border-b-[#7a9d7e] dark:focus:border-b-[#9bb89e] focus:bg-white dark:focus:bg-slate-800/95 transition-all shadow-md hover:shadow-lg dark:shadow-xl dark:hover:shadow-2xl text-foreground dark:text-foreground placeholder-slate-400 dark:placeholder-slate-400 hover:-translate-y-0.5 ${isRTL ? "text-right font-cairo pr-12 pl-4" : "pl-6 pr-12"}`}
+                className={`w-full px-4 md:px-6 py-3 md:py-4 bg-white/90 dark:bg-slate-800/80 backdrop-blur-md border border-slate-300 dark:border-slate-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent focus:bg-white dark:focus:bg-slate-800/95 transition-all shadow-sm hover:shadow-md dark:shadow-lg dark:hover:shadow-xl text-foreground dark:text-foreground placeholder-slate-400 dark:placeholder-slate-400 ${isRTL ? "text-right font-cairo pr-12 pl-4" : "pl-6 pr-12"}`}
                 dir={isRTL ? "rtl" : "ltr"}
-                style={{ fontFamily: 'var(--font-sans)' }}
               />
               <div
-                className={`absolute top-1/2 -translate-y-1/2 text-[#7a9d7e] dark:text-[#9bb89e] transition-all hover:scale-110 ${isRTL ? "left-4" : "right-4"}`}
+                className={`absolute top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate-400 ${isRTL ? "left-4" : "right-4"}`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 transition-transform hover:rotate-12"
+                  className="h-5 w-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth={2.5}
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    strokeWidth={2}
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                   />
                 </svg>

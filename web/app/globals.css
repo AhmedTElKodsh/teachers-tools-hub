@@ -1,59 +1,77 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 /* ============================================
    CSS VARIABLES - COLOR SYSTEM
+   Educational & Warm Academic Palette
    ============================================ */
 
 :root {
-  /* Light Theme - Soft, professional palette */
-  --background: #ffffff;
-  --foreground: #000000;
-  --surface: #f8fafc;
-  --surface-hover: #f1f5f9;
-  --border: #e2e8f0;
-  --border-hover: #cbd5e1;
+  /* Light Theme - Warm Classroom Palette */
+  --background: #fdfcf9;
+  --foreground: #2d1b0e;
+  --surface: #ffffff;
+  --surface-hover: #f5f1ec;
+  --border: #e7dfd6;
+  --border-hover: #d4c5b5;
 
-  /* Light theme gradients - Softer, less intense */
-  --gradient-start: #eff6ff;
-  --gradient-mid: #faf5ff;
-  --gradient-end: #fdf2f8;
+  /* Teacher-inspired color palette */
+  --terracotta: #c96847;
+  --terracotta-light: #e08968;
+  --sage: #7a9d7e;
+  --sage-light: #9bb89e;
+  --navy: #2c4251;
+  --navy-light: #3d5a6b;
+  --cream: #f9f6f1;
+  --warm-gray: #8b7d6b;
 
-  /* Primary colors - Blue to Purple */
-  --primary-from: #3b82f6;
-  --primary-to: #8b5cf6;
-  --primary-hover-from: #2563eb;
-  --primary-hover-to: #7c3aed;
+  /* Educational accent colors */
+  --pencil-yellow: #ffd966;
+  --marker-blue: #6ba3d4;
+  --marker-pink: #e8879e;
+  --chalk-white: #f5f5f0;
+  --grade-a: #7dc383;
+  --notebook-blue: #b8d4e8;
 
   /* Accent colors */
-  --accent-emerald: #10b981;
-  --accent-amber: #f59e0b;
-  --accent-rose: #f43f5e;
+  --accent-success: #7a9d7e;
+  --accent-warning: #d4975c;
+  --accent-info: #6b8fa3;
+  --accent-star: #d4975c;
 }
 
 .dark {
-  /* Dark Theme - Deep, rich palette with proper contrast */
-  --background: #0a0f1e;
-  --foreground: #ffffff;
-  --surface: #1a1f35;
-  --surface-hover: #252b45;
-  --border: #2d3548;
-  --border-hover: #3d4560;
+  /* Dark Theme - Cozy Evening Study Mode */
+  --background: #1a1410;
+  --foreground: #f5f1ec;
+  --surface: #2d231c;
+  --surface-hover: #3a2d23;
+  --border: #4a3a2e;
+  --border-hover: #5c4a3b;
 
-  /* Dark theme gradients - Subtle, elegant */
-  --gradient-start: #0f1629;
-  --gradient-mid: #1a1f35;
-  --gradient-end: #252b45;
+  /* Dark classroom palette */
+  --terracotta: #e08968;
+  --terracotta-light: #f0a080;
+  --sage: #9bb89e;
+  --sage-light: #b5cdb8;
+  --navy: #6b8fa3;
+  --navy-light: #85a5b8;
+  --cream: #2d231c;
+  --warm-gray: #a89885;
 
-  /* Primary colors - Brighter for dark backgrounds */
-  --primary-from: #60a5fa;
-  --primary-to: #a78bfa;
-  --primary-hover-from: #3b82f6;
-  --primary-hover-to: #8b5cf6;
+  /* Dark educational accents */
+  --pencil-yellow: #f4d96b;
+  --marker-blue: #7fb5e0;
+  --marker-pink: #f09aae;
+  --chalk-white: #e8e8e0;
+  --grade-a: #8fd995;
+  --notebook-blue: #95b8d1;
 
-  /* Accent colors - Adjusted for dark mode */
-  --accent-emerald: #34d399;
-  --accent-amber: #fbbf24;
-  --accent-rose: #fb7185;
+  /* Dark accent colors */
+  --accent-success: #9bb89e;
+  --accent-warning: #e0a870;
+  --accent-info: #85a5b8;
+  --accent-star: #e0a870;
 }
 
 @theme {
@@ -63,11 +81,11 @@
   --color-surface-hover: var(--surface-hover);
   --color-border: var(--border);
   --color-border-hover: var(--border-hover);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Configure dark mode for Tailwind v4 */
-  --default-transition-duration: 200ms;
+  --default-transition-duration: 300ms;
   --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -78,10 +96,42 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+    background-color 0.4s ease,
+    color 0.4s ease;
+
+  /* Enhanced paper texture - like quality writing paper */
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 31px,
+      rgba(201, 104, 71, 0.018) 31px,
+      rgba(201, 104, 71, 0.018) 32px
+    ),
+    radial-gradient(circle at 20% 50%, transparent 0%, rgba(0,0,0,0.012) 100%),
+    radial-gradient(circle at 80% 80%, transparent 0%, rgba(122,157,126,0.015) 100%);
+}
+
+.dark body {
+  /* Subtle chalkboard texture for dark mode */
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 31px,
+      rgba(224, 137, 104, 0.015) 31px,
+      rgba(224, 137, 104, 0.015) 32px
+    ),
+    radial-gradient(circle at 20% 50%, transparent 0%, rgba(255,255,255,0.015) 100%),
+    radial-gradient(circle at 80% 80%, transparent 0%, rgba(155,184,158,0.02) 100%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* RTL Support */
@@ -97,7 +147,7 @@ body {
 }
 
 /* ============================================
-   ANIMATIONS
+   ANIMATIONS - Dignified & Purposeful
    ============================================ */
 
 @keyframes gradient-shift {
@@ -112,13 +162,13 @@ body {
 
 .animate-gradient {
   background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
+  animation: gradient-shift 12s ease infinite;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -127,45 +177,148 @@ body {
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   opacity: 0;
 }
 
-@keyframes pulse-subtle {
-  0%,
-  100% {
-    opacity: 1;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
   }
   50% {
-    opacity: 0.9;
+    transform: translateY(-4px);
   }
 }
 
-.animate-pulse-subtle {
-  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Teacher-specific animations */
+@keyframes drawUnderline {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes checkmark {
+  0% {
+    stroke-dashoffset: 50;
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    stroke-dashoffset: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes paperFlip {
+  0% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(90deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+}
+
+@keyframes highlighterSwipe {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 0.3;
+  }
+}
+
+@keyframes pencilDraw {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes stickyNotePeel {
+  0% {
+    transform: rotateX(0deg) translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  100% {
+    transform: rotateX(-5deg) translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  }
+}
+
+.animate-draw-underline {
+  animation: drawUnderline 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-checkmark {
+  stroke-dasharray: 50;
+  animation: checkmark 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-paper-flip {
+  animation: paperFlip 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-sticky-peel {
+  animation: stickyNotePeel 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 /* ============================================
-   HOVER EFFECTS
+   HOVER EFFECTS - Subtle & Refined
    ============================================ */
 
 .hover-scale {
   transition:
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s ease;
 }
 
 .hover-scale:hover {
-  transform: translateY(-6px) scale(1.01);
+  transform: translateY(-4px);
   box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.15),
-    0 10px 10px -5px rgba(0, 0, 0, 0.08);
+    0 12px 24px -8px rgba(201, 104, 71, 0.15),
+    0 4px 8px -2px rgba(44, 66, 81, 0.08);
 }
 
 .dark .hover-scale:hover {
   box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.5),
-    0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    0 12px 24px -8px rgba(224, 137, 104, 0.2),
+    0 4px 8px -2px rgba(0, 0, 0, 0.4);
 }
 
 /* ============================================
@@ -182,199 +335,646 @@ main {
 }
 
 /* ============================================
-   HEADER COMPONENT
+   HEADER COMPONENT - Classroom Bulletin Board
    ============================================ */
 
-/* Light Theme Header - Soft gradient */
 header {
   background: linear-gradient(
     135deg,
-    var(--gradient-start) 0%,
-    var(--gradient-mid) 50%,
-    var(--gradient-end) 100%
+    var(--cream) 0%,
+    rgba(201, 104, 71, 0.08) 40%,
+    rgba(122, 157, 126, 0.08) 60%,
+    var(--surface) 100%
   );
-  border-bottom: 1px solid var(--border);
+  border-bottom: 4px solid var(--terracotta);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Dark Theme Header - Deep gradient with subtle glow */
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 104, 71, 0.05) 50%,
+    transparent 100%
+  );
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+/* Decorative pencil border accent */
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--terracotta) 0px,
+    var(--terracotta) 8px,
+    var(--sage) 8px,
+    var(--sage) 16px,
+    var(--pencil-yellow) 16px,
+    var(--pencil-yellow) 24px,
+    var(--marker-blue) 24px,
+    var(--marker-blue) 32px
+  );
+  opacity: 0.6;
+}
+
 .dark header {
   background: linear-gradient(
     135deg,
-    #0a0f1e 0%,
-    #1a1f35 25%,
-    #252b45 50%,
-    #1a1f35 75%,
-    #0a0f1e 100%
+    var(--surface) 0%,
+    rgba(224, 137, 104, 0.1) 40%,
+    rgba(155, 184, 158, 0.08) 60%,
+    var(--background) 100%
   );
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 4px 20px rgba(96, 165, 250, 0.05);
+  border-bottom: 4px solid var(--terracotta-light);
 }
 
-/* Ensure header text is visible */
-.dark header h1 {
-  /* Gradient text is already visible */
-}
-
-/* Header animated gradient overlay */
-.dark header .animate-gradient {
+.dark header::before {
   background: linear-gradient(
     90deg,
-    rgba(96, 165, 250, 0.05) 0%,
-    rgba(167, 139, 250, 0.05) 50%,
-    rgba(96, 165, 250, 0.05) 100%
+    transparent 0%,
+    rgba(224, 137, 104, 0.08) 50%,
+    transparent 100%
   );
+}
+
+.dark header::after {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--terracotta-light) 0px,
+    var(--terracotta-light) 8px,
+    var(--sage-light) 8px,
+    var(--sage-light) 16px,
+    var(--pencil-yellow) 16px,
+    var(--pencil-yellow) 24px,
+    var(--marker-blue) 24px,
+    var(--marker-blue) 32px
+  );
+  opacity: 0.5;
 }
 
 /* ============================================
-   TOOL CARDS COMPONENT
+   TOOL CARDS - Lesson Plan Card Aesthetic
    ============================================ */
 
-/* Light Theme Cards */
 .tool-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border: 1px solid var(--border);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-left: 6px solid var(--terracotta);
+  box-shadow:
+    3px 3px 12px rgba(45, 27, 14, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+/* Pushpin effect at top */
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(
+    circle,
+    var(--marker-pink) 0%,
+    var(--terracotta) 70%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  box-shadow:
+    0 2px 4px rgba(201, 104, 71, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transform: scale(0.5) translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Highlighter swipe effect on hover */
+.tool-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 217, 102, 0.15) 20%,
+    rgba(255, 217, 102, 0.25) 50%,
+    rgba(255, 217, 102, 0.15) 80%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  border-radius: inherit;
 }
 
 .tool-card:hover {
-  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-  border-color: var(--border-hover);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  transform: translateY(-4px);
+  border-left-color: var(--sage);
+  border-color: var(--terracotta);
+  box-shadow:
+    5px 10px 25px rgba(201, 104, 71, 0.18),
+    3px 3px 12px rgba(122, 157, 126, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform: translateY(-6px) rotate(0.5deg);
 }
 
-/* Dark Theme Cards - Rich gradient with glow */
+.tool-card:hover::before {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.tool-card:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .dark .tool-card {
-  background: linear-gradient(135deg, #1a1f35 0%, #252b45 100%);
-  border: 1px solid var(--border);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-left: 6px solid var(--terracotta-light);
   box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(96, 165, 250, 0.03);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    4px 4px 16px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.dark .tool-card::before {
+  background: radial-gradient(
+    circle,
+    var(--marker-pink) 0%,
+    var(--terracotta-light) 70%,
+    transparent 100%
+  );
+  box-shadow:
+    0 2px 6px rgba(224, 137, 104, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.dark .tool-card::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(244, 217, 107, 0.12) 20%,
+    rgba(244, 217, 107, 0.18) 50%,
+    rgba(244, 217, 107, 0.12) 80%,
+    transparent 100%
+  );
 }
 
 .dark .tool-card:hover {
-  background: linear-gradient(135deg, #252b45 0%, #2d3548 100%);
-  border-color: var(--border-hover);
+  border-left-color: var(--sage-light);
+  border-color: var(--terracotta-light);
   box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.5),
-    0 0 30px rgba(96, 165, 250, 0.08);
-  transform: translateY(-4px);
+    5px 12px 30px rgba(224, 137, 104, 0.25),
+    3px 3px 16px rgba(155, 184, 158, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(-6px) rotate(0.5deg);
 }
 
-/* Card gradient overlay on hover */
 .dark .tool-card .group-hover\:opacity-100 {
   background: linear-gradient(
     135deg,
-    rgba(96, 165, 250, 0.05) 0%,
-    rgba(167, 139, 250, 0.05) 100%
+    rgba(224, 137, 104, 0.05) 0%,
+    rgba(155, 184, 158, 0.05) 100%
   );
 }
 
 /* ============================================
-   SIDEBAR COMPONENT
+   SIDEBAR - Teacher's Planner Aesthetic
    ============================================ */
 
-/* Light Theme Sidebar */
 .sidebar-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border: 1px solid var(--border);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-top: 5px solid var(--sage);
+  box-shadow:
+    3px 3px 12px rgba(45, 27, 14, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  position: relative;
 }
 
-/* Dark Theme Sidebar - Matching card style */
-.dark .sidebar-card {
-  background: linear-gradient(135deg, #1a1f35 0%, #252b45 100%);
-  border: 1px solid var(--border);
+/* Planner binding holes */
+.sidebar-card::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 20px;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(
+    circle,
+    var(--warm-gray) 0%,
+    var(--warm-gray) 50%,
+    transparent 70%
+  );
+  border-radius: 50%;
   box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(96, 165, 250, 0.03);
+    0 40px 0 var(--warm-gray),
+    0 80px 0 var(--warm-gray),
+    0 120px 0 var(--warm-gray),
+    inset 0 1px 1px rgba(0, 0, 0, 0.3);
+  opacity: 0.15;
+}
+
+/* Notebook margin line */
+.sidebar-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 28px;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--marker-pink) 10%,
+    var(--marker-pink) 90%,
+    transparent 100%
+  );
+  opacity: 0.2;
+}
+
+.dark .sidebar-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-top: 5px solid var(--sage-light);
+  box-shadow:
+    4px 4px 16px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.dark .sidebar-card::before {
+  background: radial-gradient(
+    circle,
+    var(--warm-gray) 0%,
+    var(--warm-gray) 50%,
+    transparent 70%
+  );
+  box-shadow:
+    0 40px 0 var(--warm-gray),
+    0 80px 0 var(--warm-gray),
+    0 120px 0 var(--warm-gray),
+    inset 0 1px 2px rgba(0, 0, 0, 0.5);
+  opacity: 0.12;
+}
+
+.dark .sidebar-card::after {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--marker-pink) 10%,
+    var(--marker-pink) 90%,
+    transparent 100%
+  );
+  opacity: 0.15;
 }
 
 /* ============================================
    BUTTONS & INTERACTIVE ELEMENTS
    ============================================ */
 
-/* Primary gradient buttons - Light theme */
 .btn-gradient-primary {
   background: linear-gradient(
-    90deg,
-    var(--primary-from) 0%,
-    var(--primary-to) 100%
+    135deg,
+    var(--terracotta) 0%,
+    var(--terracotta-light) 100%
   );
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow:
+    0 3px 10px rgba(201, 104, 71, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gradient-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Subtle texture for button */
+.btn-gradient-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.03) 2px,
+      rgba(255, 255, 255, 0.03) 4px
+    );
+  pointer-events: none;
+}
+
+.btn-gradient-primary:hover::before {
+  left: 100%;
 }
 
 .btn-gradient-primary:hover {
   background: linear-gradient(
-    90deg,
-    var(--primary-hover-from) 0%,
-    var(--primary-hover-to) 100%
+    135deg,
+    var(--sage) 0%,
+    var(--sage-light) 100%
   );
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  box-shadow:
+    0 6px 20px rgba(122, 157, 126, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transform: translateY(-3px) scale(1.02);
 }
 
-/* Primary gradient buttons - Dark theme */
+.btn-gradient-primary:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
 .dark .btn-gradient-primary {
   background: linear-gradient(
-    90deg,
-    var(--primary-from) 0%,
-    var(--primary-to) 100%
+    135deg,
+    var(--terracotta-light) 0%,
+    var(--sage-light) 100%
   );
-  box-shadow: 0 0 20px rgba(96, 165, 250, 0.15);
+  box-shadow:
+    0 3px 14px rgba(224, 137, 104, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .dark .btn-gradient-primary:hover {
   background: linear-gradient(
-    90deg,
-    var(--primary-hover-from) 0%,
-    var(--primary-hover-to) 100%
+    135deg,
+    var(--sage-light) 0%,
+    var(--navy-light) 100%
   );
-  box-shadow: 0 4px 20px rgba(96, 165, 250, 0.3);
+  box-shadow:
+    0 6px 24px rgba(155, 184, 158, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px) scale(1.02);
 }
 
-/* Category badges - Dark theme enhancement */
+.category-badge {
+  background: linear-gradient(
+    135deg,
+    var(--sage) 0%,
+    var(--sage-light) 100%
+  );
+  box-shadow:
+    0 3px 8px rgba(122, 157, 126, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  position: relative;
+  border: 1px solid rgba(122, 157, 126, 0.4);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Star achievement decoration */
+.category-badge::before {
+  content: '★';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--pencil-yellow);
+  font-size: 0.6rem;
+  text-shadow: 0 1px 2px rgba(212, 151, 92, 0.5);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.category-badge:hover {
+  transform: scale(1.05) rotate(-2deg);
+  box-shadow:
+    0 4px 12px rgba(122, 157, 126, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.category-badge:hover::before {
+  opacity: 1;
+  left: -12px;
+}
+
 .dark .category-badge {
   background: linear-gradient(
-    90deg,
-    rgba(96, 165, 250, 0.9) 0%,
-    rgba(167, 139, 250, 0.9) 100%
+    135deg,
+    var(--sage-light) 0%,
+    var(--navy-light) 100%
   );
-  box-shadow: 0 0 15px rgba(96, 165, 250, 0.2);
+  box-shadow:
+    0 3px 10px rgba(155, 184, 158, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(155, 184, 158, 0.3);
+}
+
+.dark .category-badge::before {
+  color: var(--pencil-yellow);
+  text-shadow: 0 1px 3px rgba(244, 217, 107, 0.6);
+}
+
+.dark .category-badge:hover {
+  box-shadow:
+    0 4px 16px rgba(155, 184, 158, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 /* ============================================
-   FORM INPUTS
+   FORM INPUTS - Worksheet Style Forms
    ============================================ */
 
-/* Search input - Dark theme */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+textarea,
+select {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-bottom: 3px solid var(--marker-blue);
+  color: var(--foreground);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-family: var(--font-sans);
+  position: relative;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--terracotta);
+  border-bottom-color: var(--sage);
+  box-shadow:
+    0 0 0 3px rgba(201, 104, 71, 0.12),
+    0 3px 12px rgba(122, 157, 126, 0.2);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+/* Subtle line background for text inputs */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+textarea {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 31px,
+      rgba(122, 157, 126, 0.05) 31px,
+      rgba(122, 157, 126, 0.05) 32px
+    );
+}
+
 .dark input[type="text"],
 .dark input[type="email"],
+.dark input[type="url"],
 .dark textarea,
 .dark select {
-  background: rgba(26, 31, 53, 0.8);
+  background: var(--surface);
   border-color: var(--border);
+  border-bottom: 3px solid var(--marker-blue);
   color: var(--foreground);
-  backdrop-filter: blur(10px);
+}
+
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="url"],
+.dark textarea {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 31px,
+      rgba(155, 184, 158, 0.08) 31px,
+      rgba(155, 184, 158, 0.08) 32px
+    );
 }
 
 .dark input[type="text"]:focus,
 .dark input[type="email"]:focus,
+.dark input[type="url"]:focus,
 .dark textarea:focus,
 .dark select:focus {
-  background: rgba(26, 31, 53, 0.95);
-  border-color: var(--primary-from);
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+  border-color: var(--terracotta-light);
+  border-bottom-color: var(--sage-light);
+  box-shadow:
+    0 0 0 3px rgba(224, 137, 104, 0.15),
+    0 3px 16px rgba(155, 184, 158, 0.25);
+  transform: translateY(-2px);
 }
 
 /* ============================================
-   FOOTER
+   FOOTER - Classroom Sign-off
    ============================================ */
 
+footer {
+  background: linear-gradient(
+    to top,
+    var(--surface) 0%,
+    rgba(201, 104, 71, 0.05) 100%
+  );
+  border-top: 4px solid var(--sage);
+  position: relative;
+}
+
+/* Decorative color stripe */
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--sage) 0px,
+    var(--sage) 20px,
+    var(--terracotta) 20px,
+    var(--terracotta) 40px,
+    var(--pencil-yellow) 40px,
+    var(--pencil-yellow) 60px,
+    var(--marker-blue) 60px,
+    var(--marker-blue) 80px
+  );
+  opacity: 0.5;
+}
+
+/* Subtle shadow accent */
+footer::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(45, 27, 14, 0.1) 50%,
+    transparent 100%
+  );
+}
+
 .dark footer {
-  background: linear-gradient(135deg, #0a0f1e 0%, #1a1f35 100%);
-  border-top: 1px solid var(--border);
+  background: linear-gradient(
+    to top,
+    var(--surface) 0%,
+    rgba(224, 137, 104, 0.05) 100%
+  );
+  border-top: 4px solid var(--sage-light);
+}
+
+.dark footer::before {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--sage-light) 0px,
+    var(--sage-light) 20px,
+    var(--terracotta-light) 20px,
+    var(--terracotta-light) 40px,
+    var(--pencil-yellow) 40px,
+    var(--pencil-yellow) 60px,
+    var(--marker-blue) 60px,
+    var(--marker-blue) 80px
+  );
+  opacity: 0.4;
+}
+
+.dark footer::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
 }
 
 /* ============================================
@@ -421,50 +1021,43 @@ header {
 }
 
 /* ============================================
-   SCROLLBAR STYLING
+   SCROLLBAR STYLING - Academic Refinement
    ============================================ */
 
-/* Light theme scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 10px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%);
-  border-radius: 10px;
-  border: 2px solid #f1f5f9;
+  background: linear-gradient(180deg, var(--terracotta) 0%, var(--sage) 100%);
+  border-radius: 6px;
+  border: 2px solid var(--surface);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%);
-}
-
-/* Dark theme scrollbar */
-.dark ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  background: linear-gradient(180deg, var(--navy) 0%, var(--terracotta) 100%);
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #1a2332;
-  border-radius: 10px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #3d4f6b 0%, #2d3b52 100%);
-  border-radius: 10px;
-  border: 2px solid #1a2332;
+  background: linear-gradient(180deg, var(--terracotta-light) 0%, var(--sage-light) 100%);
+  border-radius: 6px;
+  border: 2px solid var(--surface);
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #60a5fa 0%, #a78bfa 100%);
-  box-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
+  background: linear-gradient(180deg, var(--navy-light) 0%, var(--terracotta-light) 100%);
+  box-shadow: 0 0 8px rgba(224, 137, 104, 0.3);
 }
 
 /* ============================================
@@ -484,29 +1077,288 @@ header {
 }
 
 /* ============================================
-   UTILITY CLASSES
+   UTILITY CLASSES - Academic Elements
    ============================================ */
 
-/* Glass morphism effect */
 .glass {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(201, 104, 71, 0.1);
 }
 
 .dark .glass {
-  background: rgba(26, 35, 50, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(96, 165, 250, 0.1);
+  background: rgba(45, 35, 28, 0.85);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(224, 137, 104, 0.15);
 }
 
-/* Glow effect for interactive elements */
 .glow-on-hover:hover {
-  box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+  box-shadow:
+    0 0 20px rgba(201, 104, 71, 0.3),
+    0 4px 12px rgba(122, 157, 126, 0.2);
 }
 
 .dark .glow-on-hover:hover {
-  box-shadow: 0 0 30px rgba(96, 165, 250, 0.5);
+  box-shadow:
+    0 0 24px rgba(224, 137, 104, 0.4),
+    0 4px 16px rgba(155, 184, 158, 0.3);
+}
+
+/* Educational accent decorations */
+.corner-fold {
+  position: relative;
+}
+
+.corner-fold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  border-color: transparent var(--sage) transparent transparent;
+  opacity: 0.3;
+}
+
+/* Underline accent for headings */
+.heading-accent {
+  position: relative;
+  display: inline-block;
+}
+
+.heading-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--terracotta) 0%,
+    var(--sage) 100%
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.heading-accent:hover::after {
+  transform: scaleX(1);
+}
+
+/* ============================================
+   TEACHER-INSPIRED UTILITY CLASSES
+   ============================================ */
+
+/* Sticky note style */
+.sticky-note {
+  background: linear-gradient(
+    135deg,
+    var(--pencil-yellow) 0%,
+    #fff9d6 100%
+  );
+  border: 1px solid rgba(201, 104, 71, 0.2);
+  box-shadow:
+    2px 4px 8px rgba(45, 27, 14, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  position: relative;
+}
+
+.sticky-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(
+    to bottom,
+    rgba(212, 151, 92, 0.1) 0%,
+    transparent 100%
+  );
+}
+
+.dark .sticky-note {
+  background: linear-gradient(
+    135deg,
+    rgba(244, 217, 107, 0.2) 0%,
+    rgba(255, 249, 214, 0.15) 100%
+  );
+  border: 1px solid rgba(224, 137, 104, 0.3);
+}
+
+/* Grade badge style */
+.grade-badge {
+  background: linear-gradient(
+    135deg,
+    var(--grade-a) 0%,
+    #a8e0af 100%
+  );
+  border: 2px solid var(--sage);
+  box-shadow:
+    0 2px 8px rgba(122, 157, 126, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.grade-badge::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background: var(--sage);
+  border-radius: 2px;
+}
+
+.dark .grade-badge {
+  background: linear-gradient(
+    135deg,
+    rgba(143, 217, 149, 0.3) 0%,
+    rgba(168, 224, 175, 0.25) 100%
+  );
+  border: 2px solid var(--sage-light);
+}
+
+/* Handwritten style border */
+.handdrawn-border {
+  border: 2px solid var(--foreground);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  position: relative;
+}
+
+.handdrawn-border::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--terracotta);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Pencil underline effect */
+.pencil-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.pencil-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--pencil-yellow) 0%,
+    var(--pencil-yellow) 90%,
+    transparent 100%
+  );
+  opacity: 0.6;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(212, 151, 92, 0.3);
+}
+
+.pencil-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Bulletin board pin effect */
+.pin-effect {
+  position: relative;
+}
+
+.pin-effect::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(
+    circle,
+    var(--terracotta) 0%,
+    var(--terracotta-light) 60%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  box-shadow:
+    0 2px 6px rgba(201, 104, 71, 0.4),
+    inset 0 1px 3px rgba(255, 255, 255, 0.4);
+}
+
+.pin-effect::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 8px;
+  background: linear-gradient(
+    to bottom,
+    var(--warm-gray) 0%,
+    transparent 100%
+  );
+  opacity: 0.5;
+}
+
+/* Checkmark style for completed items */
+.checkmark-style {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--grade-a);
+  border-radius: 4px;
+  background: linear-gradient(
+    135deg,
+    rgba(125, 195, 131, 0.1) 0%,
+    rgba(168, 224, 175, 0.2) 100%
+  );
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.checkmark-style:hover {
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 4px 12px rgba(122, 157, 126, 0.3);
+}
+
+/* Notebook margin line */
+.notebook-margin {
+  border-left: 3px solid var(--marker-pink);
+  padding-left: 24px;
+  position: relative;
+}
+
+.notebook-margin::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--terracotta);
+  opacity: 0.3;
+}
+
+.dark .notebook-margin {
+  border-left-color: var(--marker-pink);
 }
 
 /* ============================================
@@ -522,6 +1374,15 @@ header {
     box-shadow:
       0 10px 20px -5px rgba(96, 165, 250, 0.2),
       0 5px 10px -5px rgba(167, 139, 250, 0.15);
+  }
+
+  /* Reduce animation intensity on mobile */
+  .tool-card:hover {
+    transform: translateY(-3px) rotate(0deg);
+  }
+
+  .pencil-underline::after {
+    height: 2px;
   }
 }
 
